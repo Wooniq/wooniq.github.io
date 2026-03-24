@@ -1,0 +1,2227 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>HAN JIWOON | Backend & Infra Engineer Portfolio</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        'brand': '#3B5BDB',
+        'brand-light': '#5C7CFA',
+        'brand-lighter': '#DBE4FF',
+        'brand-dark': '#2B4ACB',
+        'brand-50': '#EDF2FF',
+        'dark': '#0F1419',
+        'dark-card': '#161B22',
+        'dark-border': '#21262D',
+        'dark-text': '#C9D1D9',
+        'dark-muted': '#8B949E',
+      },
+      fontFamily: {
+        'sans': ['Plus Jakarta Sans', 'Noto Sans KR', 'sans-serif'],
+        'mono': ['JetBrains Mono', 'monospace'],
+        'kr': ['Noto Sans KR', 'sans-serif'],
+      },
+    },
+  },
+}
+</script>
+<style>
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    display: inline-block; vertical-align: middle;
+  }
+  html { scroll-behavior: smooth; }
+  body { overflow-x: hidden; }
+
+  /* Animations */
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes slideInLeft {
+    from { opacity: 0; transform: translateX(-40px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+  @keyframes scaleIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+  }
+  .animate-fade-up { animation: fadeInUp 0.7s ease-out forwards; }
+  .animate-slide-left { animation: slideInLeft 0.6s ease-out forwards; }
+  .animate-scale-in { animation: scaleIn 0.5s ease-out forwards; }
+  .delay-1 { animation-delay: 0.1s; opacity: 0; }
+  .delay-2 { animation-delay: 0.2s; opacity: 0; }
+  .delay-3 { animation-delay: 0.3s; opacity: 0; }
+  .delay-4 { animation-delay: 0.4s; opacity: 0; }
+  .delay-5 { animation-delay: 0.5s; opacity: 0; }
+
+  /* Pipeline arrow */
+  .pipeline-arrow::after {
+    content: '→';
+    position: absolute;
+    right: -18px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #5C7CFA;
+    font-size: 1.25rem;
+    font-weight: 700;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: #f1f3f5; }
+  ::-webkit-scrollbar-thumb { background: #3B5BDB; border-radius: 3px; }
+
+  /* Nav active */
+  .nav-link.active { color: #3B5BDB; border-bottom: 2px solid #3B5BDB; }
+
+  /* Section heading decoration */
+  .section-heading::before {
+    content: '';
+    display: inline-block;
+    width: 4px;
+    height: 28px;
+    background: #3B5BDB;
+    margin-right: 12px;
+    border-radius: 2px;
+    vertical-align: middle;
+  }
+
+  /* Tech tag */
+  .tech-tag {
+    display: inline-block;
+    padding: 3px 10px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    font-family: 'JetBrains Mono', monospace;
+    border-radius: 4px;
+    white-space: nowrap;
+  }
+  .tech-tag-blue { background: #DBE4FF; color: #3B5BDB; }
+  .tech-tag-green { background: #D3F9D8; color: #2B8A3E; }
+  .tech-tag-orange { background: #FFE8CC; color: #D9480F; }
+  .tech-tag-purple { background: #E5DBFF; color: #7048E8; }
+  .tech-tag-cyan { background: #C3FAE8; color: #0B7285; }
+  .tech-tag-pink { background: #FFE0EB; color: #C2255C; }
+  .tech-tag-dark { background: #E9ECEF; color: #495057; }
+
+  /* Architecture diagram styles */
+  .arch-node {
+    border: 1.5px solid #21262D;
+    background: #161B22;
+    color: #C9D1D9;
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 0.8rem;
+    text-align: center;
+  }
+  .arch-node-highlight {
+    border-color: #3B5BDB;
+    background: rgba(59, 91, 219, 0.1);
+  }
+
+  /* Dark section */
+  .dark-section {
+    background: #0F1419;
+    color: #C9D1D9;
+  }
+
+  /* Card hover */
+  .project-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 60px rgba(59, 91, 219, 0.12);
+  }
+
+  /* PAR card */
+  .par-card { border-top: 3px solid; }
+  .par-p { border-top-color: #FA5252; }
+  .par-a { border-top-color: #3B5BDB; }
+  .par-r { border-top-color: #40C057; }
+
+  /* Code block */
+  .code-block {
+    background: #0D1117;
+    border: 1px solid #21262D;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .code-block-header {
+    background: #161B22;
+    border-bottom: 1px solid #21262D;
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .code-dot { width: 10px; height: 10px; border-radius: 50%; }
+
+  /* Stat card */
+  .stat-highlight {
+    font-size: 2.5rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #3B5BDB, #5C7CFA);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1.1;
+  }
+</style>
+</head>
+<body class="bg-white text-gray-900 font-sans selection:bg-brand-lighter selection:text-brand-dark">
+
+<!-- ============ NAVIGATION ============ -->
+<nav class="fixed top-0 w-full z-50 bg-white/90 backdrop-blur-md border-b border-gray-100" id="navbar">
+  <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+    <a href="#hero" class="text-xl font-extrabold tracking-tight text-gray-900">
+      <span class="text-brand">HAN</span> JIWOON
+    </a>
+    <div class="hidden md:flex items-center gap-8">
+      <a href="#about" class="nav-link text-sm font-semibold text-gray-500 hover:text-brand transition-colors pb-1">About</a>
+      <a href="#experience" class="nav-link text-sm font-semibold text-gray-500 hover:text-brand transition-colors pb-1">Experience</a>
+      <a href="#projects" class="nav-link text-sm font-semibold text-gray-500 hover:text-brand transition-colors pb-1">Projects</a>
+      <a href="#contact" class="nav-link text-sm font-semibold text-gray-500 hover:text-brand transition-colors pb-1">Contact</a>
+      <a href="https://github.com/Wooniq" target="_blank" class="bg-brand hover:bg-brand-dark text-white px-5 py-2 rounded-full text-sm font-bold transition-colors">GitHub</a>
+    </div>
+    <button class="md:hidden text-gray-700" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+      <span class="material-symbols-outlined text-2xl">menu</span>
+    </button>
+  </div>
+  <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 px-6 py-4 space-y-3">
+    <a href="#about" class="block text-sm font-semibold text-gray-600">About</a>
+    <a href="#experience" class="block text-sm font-semibold text-gray-600">Experience</a>
+    <a href="#projects" class="block text-sm font-semibold text-gray-600">Projects</a>
+    <a href="#contact" class="block text-sm font-semibold text-gray-600">Contact</a>
+  </div>
+</nav>
+
+<main>
+<!-- ============ HERO ============ -->
+<section id="hero" class="pt-28 pb-20 md:pt-36 md:pb-28 bg-gradient-to-b from-brand-50/50 to-white">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
+      <div class="md:col-span-8 space-y-6 animate-fade-up">
+        <p class="text-brand font-bold tracking-widest text-xs uppercase">Backend & Infrastructure Engineer</p>
+        <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight leading-tight text-gray-900 font-kr">
+          Portfolio
+        </h1>
+        <p class="text-lg md:text-xl text-gray-500 leading-relaxed max-w-2xl">
+          디지털 경험을 설계하는 엔지니어, <strong class="text-gray-900 font-bold">한지운</strong>입니다.
+        </p>
+        <p class="text-base text-gray-400 leading-relaxed max-w-2xl">
+          단단한 시스템 엔진과 변화에 유연한 서스펜션을 갖춘 엔지니어 한지운 입니다
+        </p>
+        <div class="flex flex-wrap items-center gap-4 pt-4">
+          <a href="#projects" class="bg-brand hover:bg-brand-dark text-white px-8 py-3.5 rounded-full font-bold text-sm transition-all hover:-translate-y-0.5 shadow-lg shadow-brand/20">프로젝트 보기</a>
+          <a href="mailto:intothexx@gmail.com" class="text-brand font-bold text-sm border-b-2 border-brand/20 hover:border-brand transition-colors pb-0.5">intothexx@gmail.com</a>
+        </div>
+
+        <!-- Quick Stats -->
+        <div class="flex flex-wrap gap-8 pt-6">
+          <div>
+            <p class="text-3xl font-extrabold text-brand">9<span class="text-lg">개</span></p>
+            <p class="text-xs text-gray-400 font-semibold mt-1">협업 프로젝트</p>
+          </div>
+          <div>
+            <p class="text-3xl font-extrabold text-brand">5<span class="text-lg">회</span></p>
+            <p class="text-xs text-gray-400 font-semibold mt-1">수상</p>
+          </div>
+          <div>
+            <p class="text-3xl font-extrabold text-brand">9,000+</p>
+            <p class="text-xs text-gray-400 font-semibold mt-1">학우 이용 스쿨버스 서버</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="md:col-span-4 animate-fade-up delay-2">
+        <div class="bg-white rounded-2xl shadow-xl shadow-gray-200/60 p-6 space-y-5 border border-gray-100">
+          <div class="flex items-center gap-4">
+            <div class="w-16 h-16 rounded-full bg-brand flex items-center justify-center text-white text-2xl font-extrabold">한</div>
+            <div>
+              <h3 class="font-extrabold text-lg">HAN JIWOON</h3>
+              <p class="text-xs text-gray-400">2003.07.05</p>
+            </div>
+          </div>
+          <div class="space-y-3 text-sm">
+            <div class="flex items-center gap-3">
+              <span class="material-symbols-outlined text-brand text-lg">mail</span>
+              <span class="text-gray-600">intothexx@gmail.com</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <span class="material-symbols-outlined text-brand text-lg">call</span>
+              <span class="text-gray-600">(+82)10-8225-7963</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <span class="material-symbols-outlined text-brand text-lg">code</span>
+              <a href="https://github.com/Wooniq" target="_blank" class="text-brand hover:underline">github.com/Wooniq</a>
+            </div>
+            <div class="flex items-center gap-3">
+              <span class="material-symbols-outlined text-brand text-lg">person</span>
+              <a href="https://www.linkedin.com/in/jiwoonhan03/" target="_blank" class="text-brand hover:underline">linkedin.com/in/jiwoonhan03</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section id="about" class="py-20 bg-white">
+  <div class="max-w-6xl mx-auto px-6">
+    <h2 class="section-heading text-2xl font-extrabold tracking-tight mb-12 font-kr">About</h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <!-- Education -->
+      <div class="bg-gray-50 rounded-xl p-6 border border-gray-100">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="material-symbols-outlined text-brand">school</span>
+          <h3 class="font-bold text-sm uppercase tracking-wider text-gray-500">Education</h3>
+        </div>
+        <p class="font-bold text-base">한성대학교</p>
+        <p class="text-sm text-gray-500 mt-1">컴퓨터공학부 학사</p>
+        <p class="text-sm text-gray-500 mt-1">GPA : <strong class="text-brand">3.76 / 4.5</strong></p>
+        <p class="text-xs text-gray-400 mt-2 font-mono">2022.03 – 2026.08</p>
+      </div>
+
+      <!-- Certifications -->
+      <div class="bg-gray-50 rounded-xl p-6 border border-gray-100">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="material-symbols-outlined text-brand">verified</span>
+          <h3 class="font-bold text-sm uppercase tracking-wider text-gray-500">Certifications</h3>
+        </div>
+        <div class="space-y-3">
+          <div>
+            <p class="font-bold text-sm">정보처리기사</p>
+            <p class="text-xs text-gray-400 font-mono">2025.09</p>
+          </div>
+          <div>
+            <p class="font-bold text-sm">TOEIC Speaking IM3</p>
+            <p class="text-xs text-gray-400 font-mono">2026.03</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Publications -->
+      <div class="bg-gray-50 rounded-xl p-6 border border-gray-100">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="material-symbols-outlined text-brand">article</span>
+          <h3 class="font-bold text-sm uppercase tracking-wider text-gray-500">Publications</h3>
+        </div>
+        <p class="font-bold text-sm">GraphRAG를 활용한 EPUB 기반 추론형 리더기</p>
+        <p class="text-sm text-gray-500 mt-1">공동저자 및 연구</p>
+        <p class="text-xs text-gray-400 mt-2 font-mono">2024.12</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EXPERIENCE ============ -->
+<section id="experience" class="py-20 bg-gray-50">
+  <div class="max-w-6xl mx-auto px-6">
+    <h2 class="section-heading text-2xl font-extrabold tracking-tight mb-12 font-kr">Experiences</h2>
+
+    <div class="space-y-0 relative">
+      <!-- Timeline line -->
+      <div class="absolute left-6 md:left-8 top-0 bottom-0 w-0.5 bg-gray-200 hidden md:block"></div>
+
+      <!-- Experience items -->
+      <div class="space-y-6">
+        <!-- 1 -->
+        <div class="flex gap-6 md:gap-8 items-start">
+          <div class="hidden md:flex w-16 h-16 rounded-full bg-brand text-white items-center justify-center flex-shrink-0 z-10 shadow-lg shadow-brand/20">
+            <span class="material-symbols-outlined">directions_car</span>
+          </div>
+          <div class="flex-1 bg-white rounded-xl p-6 border border-gray-100 shadow-sm">
+            <div class="flex flex-wrap justify-between items-start gap-2">
+              <div>
+                <h3 class="font-bold text-base">현대오토에버 모빌리티 SW스쿨 (클라우드) *</h3>
+              </div>
+              <span class="text-xs font-mono text-gray-400 bg-gray-50 px-3 py-1 rounded-full">2025.12 – 2026.06</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2 -->
+        <div class="flex gap-6 md:gap-8 items-start">
+          <div class="hidden md:flex w-16 h-16 rounded-full bg-brand-light text-white items-center justify-center flex-shrink-0 z-10">
+            <span class="material-symbols-outlined">dns</span>
+          </div>
+          <div class="flex-1 bg-white rounded-xl p-6 border border-gray-100 shadow-sm">
+            <div class="flex flex-wrap justify-between items-start gap-2">
+              <h3 class="font-bold text-base">교내 스쿨버스 앱 서버 유지보수 *</h3>
+              <span class="text-xs font-mono text-gray-400 bg-gray-50 px-3 py-1 rounded-full">2024.06 – 2024.12</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3 -->
+        <div class="flex gap-6 md:gap-8 items-start">
+          <div class="hidden md:flex w-16 h-16 rounded-full bg-gray-200 text-gray-600 items-center justify-center flex-shrink-0 z-10">
+            <span class="material-symbols-outlined">science</span>
+          </div>
+          <div class="flex-1 bg-white rounded-xl p-6 border border-gray-100 shadow-sm">
+            <div class="flex flex-wrap justify-between items-start gap-2">
+              <h3 class="font-bold text-base">학부연구생</h3>
+              <span class="text-xs font-mono text-gray-400 bg-gray-50 px-3 py-1 rounded-full">2024.03 – 2025.02</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4 -->
+        <div class="flex gap-6 md:gap-8 items-start">
+          <div class="hidden md:flex w-16 h-16 rounded-full bg-gray-200 text-gray-600 items-center justify-center flex-shrink-0 z-10">
+            <span class="material-symbols-outlined">school</span>
+          </div>
+          <div class="flex-1 bg-white rounded-xl p-6 border border-gray-100 shadow-sm">
+            <div class="flex flex-wrap justify-between items-start gap-2">
+              <h3 class="font-bold text-base">컴퓨터공학부 교과 교육 조교</h3>
+              <span class="text-xs font-mono text-gray-400 bg-gray-50 px-3 py-1 rounded-full">2025.09 – 2025.12</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5 -->
+        <div class="flex gap-6 md:gap-8 items-start">
+          <div class="hidden md:flex w-16 h-16 rounded-full bg-gray-200 text-gray-600 items-center justify-center flex-shrink-0 z-10">
+            <span class="material-symbols-outlined">group</span>
+          </div>
+          <div class="flex-1 bg-white rounded-xl p-6 border border-gray-100 shadow-sm">
+            <div class="flex flex-wrap justify-between items-start gap-2">
+              <h3 class="font-bold text-base">IT연합동아리 멋쟁이사자처럼 백엔드</h3>
+              <span class="text-xs font-mono text-gray-400 bg-gray-50 px-3 py-1 rounded-full">2024.03 – 2024.12</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6 -->
+        <div class="flex gap-6 md:gap-8 items-start">
+          <div class="hidden md:flex w-16 h-16 rounded-full bg-gray-200 text-gray-600 items-center justify-center flex-shrink-0 z-10">
+            <span class="material-symbols-outlined">mentor</span>
+          </div>
+          <div class="flex-1 bg-white rounded-xl p-6 border border-gray-100 shadow-sm">
+            <div class="flex flex-wrap justify-between items-start gap-2">
+              <h3 class="font-bold text-base">학습능력향상튜터링 튜터</h3>
+              <span class="text-xs font-mono text-gray-400 bg-gray-50 px-3 py-1 rounded-full">2023.02 – 2025.12</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 7 -->
+        <div class="flex gap-6 md:gap-8 items-start">
+          <div class="hidden md:flex w-16 h-16 rounded-full bg-gray-200 text-gray-600 items-center justify-center flex-shrink-0 z-10">
+            <span class="material-symbols-outlined">terminal</span>
+          </div>
+          <div class="flex-1 bg-white rounded-xl p-6 border border-gray-100 shadow-sm">
+            <div class="flex flex-wrap justify-between items-start gap-2">
+              <h3 class="font-bold text-base">컴퓨터공학부 동계 코딩캠프 튜터</h3>
+              <span class="text-xs font-mono text-gray-400 bg-gray-50 px-3 py-1 rounded-full">2025.01</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROJECTS ============ -->
+<section id="projects" class="py-20 bg-white">
+  <div class="max-w-6xl mx-auto px-6">
+    <h2 class="section-heading text-2xl font-extrabold tracking-tight mb-4 font-kr">Projects</h2>
+    <p class="text-gray-400 text-sm mb-16 ml-6">주요 프로젝트 상세 소개</p>
+
+<!-- =====================================================
+     PROJECT 01 — OTA Dependency Validator
+     ===================================================== -->
+<div class="mb-32">
+  <div class="flex items-center gap-4 mb-2">
+    <span class="text-brand font-extrabold text-6xl font-mono leading-none">01</span>
+    <div>
+      <p class="text-xs text-gray-400 font-bold uppercase tracking-widest">Project</p>
+    </div>
+  </div>
+
+  <!-- Project Header -->
+  <div class="dark-section rounded-2xl p-8 md:p-12 mb-8">
+    <h3 class="text-3xl md:text-4xl font-extrabold text-white mb-3">OTA Dependency Validator</h3>
+    <p class="text-lg text-cyan-400 font-bold mb-2">커넥티드 카 무선 업데이트 안정성 확보를 위한 시스템 진단 및 검증 플랫폼</p>
+    <p class="text-dark-muted text-sm leading-relaxed max-w-3xl mb-6">
+      보이지 않는 곳에서 전장 소프트웨어의 무결성을 지키며,<br/>
+      어떤 업데이트 앞에서도 흔들림 없는 안전한 주행 경험을 보장합니다.
+    </p>
+    <div class="flex flex-wrap gap-2 mb-6">
+      <span class="tech-tag tech-tag-cyan">K3s</span>
+      <span class="tech-tag tech-tag-green">Kafka</span>
+      <span class="tech-tag tech-tag-orange">Redis</span>
+      <span class="tech-tag tech-tag-blue">SAP HANA</span>
+      <span class="tech-tag tech-tag-purple">ISO 24089</span>
+      <span class="tech-tag tech-tag-purple">ISO 3379</span>
+      <span class="tech-tag tech-tag-purple">ISO 21434</span>
+      <span class="tech-tag tech-tag-green">MQTT</span>
+      <span class="tech-tag tech-tag-orange">Autosar DLT</span>
+    </div>
+    <div class="flex flex-wrap gap-6 text-xs text-dark-muted">
+      <span>📅 2026.02 – 진행 중</span>
+      <span>🏢 현대오토에버 모빌리티 SW스쿨</span>
+      <span>👤 1인 개발</span>
+    </div>
+  </div>
+
+  <!-- Project Overview - subtitle -->
+  <div class="bg-gray-50 rounded-2xl p-8 mb-8 border border-gray-100">
+    <h4 class="font-bold text-sm text-brand uppercase tracking-widest mb-6">// PROJECT OVERVIEW</h4>
+    <h5 class="text-xl font-extrabold mb-6 font-kr">실시간 Anti-Bricking OTA 시스템 for 커넥티드 카 1,000+대 분산 환경</h5>
+
+    <!-- 01 프로젝트 목적 -->
+    <p class="text-xs font-bold text-gray-400 mb-4 font-mono">01 &nbsp; 프로젝트 목적</p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+      <div class="bg-white rounded-xl p-6 border-l-4 border-red-400">
+        <p class="text-xs font-bold text-red-500 mb-3 flex items-center gap-2">
+          <span class="material-symbols-outlined text-sm">warning</span> RISK – 해결해야 할 문제
+        </p>
+        <p class="text-sm text-gray-700 leading-relaxed">
+          ECU 간 HW-SW 버전 의존성이 사전에 검증되지 않으면,<br/>
+          OTA 업데이트 실패 및 <strong class="text-red-600">차량 불능(Bricking)</strong>이 발생해 리콜 · 인명사고로 직결됨
+        </p>
+      </div>
+      <div class="bg-white rounded-xl p-6 border-l-4 border-green-400">
+        <p class="text-xs font-bold text-green-600 mb-3 flex items-center gap-2">
+          <span class="material-symbols-outlined text-sm">check</span> SOLUTION – 구현 방향
+        </p>
+        <p class="text-sm text-gray-700 leading-relaxed">
+          배포 전 <strong class="text-green-700">DB 레이어에서 호환성을 사전 검증</strong>하는 End-to-End 관리 플랫폼을 구축하여 Bricking 리스크를 시스템 레벨에서 원천 차단
+        </p>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-xl p-6 border border-gray-100 mb-8">
+      <p class="text-sm text-gray-700 leading-relaxed">
+        <strong>1,000</strong>대 규모 분산 차량 에이전트를 양산 환경과 유사한 조건으로 시뮬레이션하고, <span class="text-brand font-semibold">Kafka → Redis → SAP HANA</span>로 이어지는 3단 실시간 파이프라인 위에서 <span class="text-brand font-semibold">ISO 24089 기반 자동 롤백 · 에러 감지 메커니즘</span>을 구현한다.
+      </p>
+      <p class="text-sm text-gray-700 leading-relaxed mt-3">
+        수백만 모빌리티 디바이스가 요구하는 Mass Request 규모에서 <span class="text-brand font-semibold">트랜잭션 정합성을 보장</span>하는 백엔드 핵심 혈관 역할을 목표로 한다.
+      </p>
+    </div>
+  </div>
+
+  <!-- 03 주요 업무 및 상세 역할 -->
+  <div class="bg-gray-50 rounded-2xl p-8 mb-8 border border-gray-100">
+    <p class="text-xs font-bold text-gray-400 mb-6 font-mono">03 &nbsp; 주요 업무 및 상세 역할</p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="bg-white rounded-xl p-6 border border-gray-100">
+        <h5 class="text-sm font-bold text-cyan-600 mb-4">분산 인프라 설계</h5>
+        <ul class="space-y-2 text-sm text-gray-600">
+          <li class="flex items-start gap-2"><span class="text-gray-300 mt-0.5">›</span> K3s 마스터-워커-4-VM 클러스터 아키텍처 설계</li>
+          <li class="flex items-start gap-2"><span class="text-gray-300 mt-0.5">›</span> 1,000개 차량 Pod 배포 전략 및 워크로드 격리</li>
+          <li class="flex items-start gap-2"><span class="text-gray-300 mt-0.5">›</span> Go 1,000 고루틴 Lock-Free Atomic 동시성 제어</li>
+          <li class="flex items-start gap-2"><span class="text-gray-300 mt-0.5">›</span> K8s HPA 기반 탄력적 스케일링 정책 수립</li>
+        </ul>
+      </div>
+      <div class="bg-white rounded-xl p-6 border border-gray-100">
+        <h5 class="text-sm font-bold text-green-600 mb-4">데이터 파이프라인 구현</h5>
+        <ul class="space-y-2 text-sm text-gray-600">
+          <li class="flex items-start gap-2"><span class="text-gray-300 mt-0.5">›</span> Kafka 3-Node 클러스터 구축 및 Consumer Group 설계</li>
+          <li class="flex items-start gap-2"><span class="text-gray-300 mt-0.5">›</span> Redis 인메모리 세션 관리 및 0.001s 실시간 판별</li>
+          <li class="flex items-start gap-2"><span class="text-gray-300 mt-0.5">›</span> SAP HANA CDS 기반 HW-SW 의존성 검증 쿼리 설계</li>
+          <li class="flex items-start gap-2"><span class="text-gray-300 mt-0.5">›</span> HANA → Redis → ECU 실시간 피드백 루프 구현</li>
+        </ul>
+      </div>
+      <div class="bg-white rounded-xl p-6 border border-gray-100">
+        <h5 class="text-sm font-bold text-orange-600 mb-4">ANTI-BRICKING 구현</h5>
+        <ul class="space-y-2 text-sm text-gray-600">
+          <li class="flex items-start gap-2"><span class="text-gray-300 mt-0.5">›</span> ISO 24089 기반 에러 감지 및 자동 롤백 메커니즘계</li>
+          <li class="flex items-start gap-2"><span class="text-gray-300 mt-0.5">›</span> SHA-256 Hash 기반 펌웨어 무결성 검증 (Code Signing)</li>
+          <li class="flex items-start gap-2"><span class="text-gray-300 mt-0.5">›</span> Fail-Safe Dual Bank 복구 시뮬레이션</li>
+          <li class="flex items-start gap-2"><span class="text-gray-300 mt-0.5">›</span> Autosar DLT 바이너리 포맷 파서 구현</li>
+        </ul>
+      </div>
+      <div class="bg-white rounded-xl p-6 border border-gray-100">
+        <h5 class="text-sm font-bold text-purple-600 mb-4">표준 검증 및 테스트</h5>
+        <ul class="space-y-2 text-sm text-gray-600">
+          <li class="flex items-start gap-2"><span class="text-gray-300 mt-0.5">›</span> ISO 3779 VIN 17자리 고유 식별 체계 적용</li>
+          <li class="flex items-start gap-2"><span class="text-gray-300 mt-0.5">›</span> ISO 21434 보안 요구사항 아키텍처 반영</li>
+          <li class="flex items-start gap-2"><span class="text-gray-300 mt-0.5">›</span> 장애 시나리오 기반 Zero Data Loss 검증</li>
+          <li class="flex items-start gap-2"><span class="text-gray-300 mt-0.5">›</span> 1,000 에이전트 동시 부하 테스트 및 TPS 분석</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Architecture Evolution -->
+  <div class="bg-gray-50 rounded-2xl p-8 mb-8 border border-gray-100">
+    <p class="text-xs font-bold text-gray-400 mb-2 font-mono">03 &nbsp; 프로젝트 내용 – Architecture Evolution</p>
+
+    <div class="space-y-6 mt-6">
+      <!-- Level 1 -->
+      <div class="bg-white rounded-xl p-6 border border-gray-100 grid grid-cols-1 md:grid-cols-12 gap-4">
+        <div class="md:col-span-3">
+          <p class="text-[10px] text-gray-400 uppercase tracking-widest mb-1">LEVEL 1</p>
+          <p class="font-bold text-sm">무결성 및 보안</p>
+          <span class="text-xs bg-purple-100 text-purple-700 px-2 py-0.5 rounded font-mono mt-1 inline-block">Security · ISO 21434</span>
+        </div>
+        <div class="md:col-span-9">
+          <ul class="space-y-2 text-sm text-gray-600">
+            <li>• <strong>Code Signing (AIE)</strong> — 펌웨어 패키지 서명 검증, SHA-256 Hash를 HANA DB에 저장·관리</li>
+            <li>• <strong>Verification (클라이언트/ECU)</strong> — ota-agent가 패키지 수신 즉시 서버 제공 Hash 대조</li>
+            <li>• <strong>Fail-Safe</strong> — 검증 실패 시 자동 복구(Dual Bank), 블랙 시뮬레이터 적용</li>
+          </ul>
+        </div>
+      </div>
+      <!-- Level 2 -->
+      <div class="bg-white rounded-xl p-6 border border-gray-100 grid grid-cols-1 md:grid-cols-12 gap-4">
+        <div class="md:col-span-3">
+          <p class="text-[10px] text-gray-400 uppercase tracking-widest mb-1">LEVEL 2</p>
+          <p class="font-bold text-sm">클라우드 네이티브 전환</p>
+          <span class="text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded font-mono mt-1 inline-block">Scalability · 1,000 ECU</span>
+        </div>
+        <div class="md:col-span-9">
+          <ul class="space-y-2 text-sm text-gray-600">
+            <li>• <strong>Containerization</strong> — Docker 이미지화, K8s HPA로 CPU/Memory 부하 탄력 대응</li>
+            <li>• <strong>GitOps CI/CD</strong> — ArgoCD·GitHub Actions 기반 자동화 배포 및 롤백 파이프라인</li>
+            <li>• <strong>K3s 위 1,000개 독립 Pod 분산 배치</strong> — 실제 플릿과 동등한 부하 환경 재현</li>
+          </ul>
+        </div>
+      </div>
+      <!-- Level 3 -->
+      <div class="bg-white rounded-xl p-6 border border-gray-100 grid grid-cols-1 md:grid-cols-12 gap-4">
+        <div class="md:col-span-3">
+          <p class="text-[10px] text-gray-400 uppercase tracking-widest mb-1">LEVEL 3</p>
+          <p class="font-bold text-sm">배포기 처리 및 실시간 모니터링</p>
+          <span class="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded font-mono mt-1 inline-block">Efficiency · Sandwich</span>
+        </div>
+        <div class="md:col-span-9">
+          <ul class="space-y-2 text-sm text-gray-600">
+            <li>• <strong>Kafka Message Queue</strong> — DLT 패킷 완충, Consumer Group 병렬 처리로 병목 방지</li>
+            <li>• <strong>Redis/SAP HANA 하이브리드</strong> — 인메모리 0.001s 판별 + DB 의존성 검증 이중화</li>
+            <li>• <strong>Real-time Monitoring Dashboard</strong> — Throughput(TPS) 시각화, Latency 실시간 추적</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ARCHITECTURE DIAGRAM -->
+  <div class="dark-section rounded-2xl p-8 md:p-12 mb-8">
+    <p class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-2 font-mono">ARCHITECTURE</p>
+    <h4 class="text-2xl font-extrabold text-white mb-2">K3s 클러스터 - 1,000대 차량 에이전트</h4>
+    <h5 class="text-lg font-bold text-cyan-400 mb-8">Kafka-Redis-HANA 파이프라인 실시간 처리</h5>
+    <p class="text-xs text-dark-muted mb-8">ISO 24089 기반 안티 브리킹 시스템 수현</p>
+
+    <!-- System Architecture Diagram -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <!-- Left: Architecture -->
+      <div class="lg:col-span-7">
+        <!-- Agent Layer -->
+        <div class="border border-dark-border rounded-lg p-4 mb-4">
+          <p class="text-xs text-dark-muted mb-3 font-mono">SYSTEM ARCHITECTURE · VM1~VM5</p>
+
+          <div class="border border-dark-border rounded-lg p-4 mb-4">
+            <p class="text-xs text-dark-muted mb-3 font-bold">AGENT LAYER</p>
+            <p class="text-xs text-dark-muted mb-2">VM1 (K3s) : agent</p>
+            <div class="flex flex-col items-center gap-3">
+              <div class="bg-dark-card border border-dark-border rounded px-6 py-3 text-sm font-mono text-center">
+                <p class="font-bold text-cyan-400">master node</p>
+                <p class="text-xs text-dark-muted">K3s Control Plane</p>
+              </div>
+              <div class="grid grid-cols-3 gap-3 w-full">
+                <div class="bg-dark-card border border-dark-border rounded px-3 py-3 text-center">
+                  <p class="text-xs text-dark-muted mb-1">VM2 (K3s)</p>
+                  <p class="font-bold text-sm text-green-400">worker node1</p>
+                  <p class="text-xs text-dark-muted">~333 Pods</p>
+                </div>
+                <div class="bg-dark-card border border-dark-border rounded px-3 py-3 text-center">
+                  <p class="text-xs text-dark-muted mb-1">VM3 (K3s)</p>
+                  <p class="font-bold text-sm text-green-400">worker node2</p>
+                  <p class="text-xs text-dark-muted">~333 Pods</p>
+                </div>
+                <div class="bg-dark-card border border-dark-border rounded px-3 py-3 text-center">
+                  <p class="text-xs text-dark-muted mb-1">VM4 (K3s)</p>
+                  <p class="font-bold text-sm text-green-400">worker node3</p>
+                  <p class="text-xs text-dark-muted">~333 Pods</p>
+                </div>
+              </div>
+            </div>
+            <p class="text-center text-xs text-dark-muted mt-3">1,000대 에이전트 Pod화 - 각각 MQTT로 연결 &nbsp; Autosar DLT 바이너리 패킷 발행</p>
+          </div>
+
+          <!-- Server Layer -->
+          <div class="border border-dark-border rounded-lg p-4">
+            <p class="text-xs text-dark-muted mb-3 font-bold">SERVER LAYER – VNS (DTA SERVER)</p>
+            <p class="text-xs text-dark-muted mb-3">Kafka 3-Node Cluster &nbsp;&nbsp;&nbsp; Hybrid Storage</p>
+            <div class="grid grid-cols-5 gap-2">
+              <div class="bg-dark-card border border-dark-border rounded px-3 py-2 text-center">
+                <p class="text-xs font-bold text-green-400">Kafka</p>
+                <p class="text-[10px] text-dark-muted">Broker1</p>
+              </div>
+              <div class="bg-dark-card border border-dark-border rounded px-3 py-2 text-center">
+                <p class="text-xs font-bold text-green-400">Kafka</p>
+                <p class="text-[10px] text-dark-muted">Broker2</p>
+              </div>
+              <div class="bg-dark-card border border-dark-border rounded px-3 py-2 text-center">
+                <p class="text-xs font-bold text-green-400">Kafka</p>
+                <p class="text-[10px] text-dark-muted">Broker3</p>
+              </div>
+              <div class="bg-dark-card border border-cyan-700 rounded px-3 py-2 text-center">
+                <p class="text-xs font-bold text-cyan-400">HANA DB</p>
+                <p class="text-[10px] text-dark-muted">CDS · Rule</p>
+              </div>
+              <div class="bg-dark-card border border-orange-700 rounded px-3 py-2 text-center">
+                <p class="text-xs font-bold text-orange-400">Redis</p>
+                <p class="text-[10px] text-dark-muted">0.001s Cache</p>
+              </div>
+            </div>
+            <p class="text-center text-xs text-dark-muted mt-3">업데이트 가능 여부 피드백 (DB 판단 후 전송)</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Key Points -->
+      <div class="lg:col-span-5 space-y-6">
+        <div>
+          <div class="flex items-center gap-3 mb-3">
+            <span class="w-2 h-2 rounded-full bg-cyan-400"></span>
+            <h6 class="font-bold text-sm text-white">분산 인프라</h6>
+            <span class="tech-tag tech-tag-cyan text-[10px]">K3s · Go</span>
+          </div>
+          <ul class="space-y-1.5 text-xs text-dark-muted ml-5">
+            <li>› K3s 마스터-워커 아키텍처로 4개 VM에 <span class="text-cyan-400">1,000개</span> 독립 차량 에이전트(Pod)를 동시 실행 커넥티드 카 양산 환경과 유사한 부하 재현</li>
+            <li>› Go 1,000 고루틴에서 Lock-Free Atomic 연산으로 동시성 데이터 정합성 <span class="text-cyan-400">100%</span> 달성</li>
+          </ul>
+        </div>
+        <div>
+          <div class="flex items-center gap-3 mb-3">
+            <span class="w-2 h-2 rounded-full bg-green-400"></span>
+            <h6 class="font-bold text-sm text-white">데이터 파이프 라인</h6>
+            <span class="tech-tag tech-tag-green text-[10px]">Kafka · Redis · HANA</span>
+          </div>
+          <ul class="space-y-1.5 text-xs text-dark-muted ml-5">
+            <li>› Kafka 3-Node 클러스터로 초당 수천 건의 DLT 바이너리 패킷 무손실 수집 — 단일 노드 장애 시에도 Zero Data Loss 보장</li>
+            <li>› Redis 인메모리 캐시 기반 0.001초 단위 실시간 업데이트 판별</li>
+            <li>› HANA DB CDS 레이어의 HW-SW 의존성 검증을 결합한 하이브리드 의사결정 구조 설계</li>
+          </ul>
+        </div>
+        <div>
+          <div class="flex items-center gap-3 mb-3">
+            <span class="w-2 h-2 rounded-full bg-purple-400"></span>
+            <h6 class="font-bold text-sm text-white">안티 브리킹/ 표준</h6>
+            <span class="tech-tag tech-tag-purple text-[10px]">ISO 24089 · DLT</span>
+          </div>
+          <ul class="space-y-1.5 text-xs text-dark-muted ml-5">
+            <li>› ISO 24089(OTA) 기반 에러 감지 및 자동 롤백 메커니즘 구현으로 펌웨어 업데이트 실패 시 차량 벽돌화(Bricking) 원천 차단</li>
+            <li>› ISO 3779 규격의 17자리 VIN 식별 체계 및 Autosar DLT 바이너리 포맷 적용으로 실무 차량 통신 표준 완전 준수</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-10 pt-8 border-t border-dark-border">
+      <div class="text-center">
+        <p class="text-3xl md:text-4xl font-extrabold text-cyan-400 font-mono">1,000</p>
+        <p class="text-xs text-dark-muted mt-1">독립 차량 에이전트(Pod)</p>
+      </div>
+      <div class="text-center">
+        <p class="text-3xl md:text-4xl font-extrabold text-green-400 font-mono">0.0016s</p>
+        <p class="text-xs text-dark-muted mt-1">Redis 실시간 판별 레이턴시</p>
+      </div>
+      <div class="text-center">
+        <p class="text-3xl md:text-4xl font-extrabold text-blue-400 font-mono italic">3-Node</p>
+        <p class="text-xs text-dark-muted mt-1">Kafka 클러스터 Zero Data Loss</p>
+      </div>
+      <div class="text-center">
+        <p class="text-3xl md:text-4xl font-extrabold text-purple-400 font-mono italic">ISOx3</p>
+        <p class="text-xs text-dark-muted mt-1">24089 · 3779 · 21434 표준 준수</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- End-to-End Pipeline -->
+  <div class="bg-gray-50 rounded-2xl p-8 mb-8 border border-gray-100">
+    <p class="text-xs font-bold text-gray-400 mb-6 font-mono uppercase">End-to-End Pipeline</p>
+    <div class="flex flex-wrap items-center justify-center gap-3 text-center">
+      <div class="bg-white border border-gray-200 rounded-lg px-4 py-3 min-w-[100px]">
+        <p class="font-bold text-xs text-cyan-600">K3s Pod</p>
+        <p class="text-[10px] text-gray-400 font-mono">×1,000 Agent</p>
+      </div>
+      <span class="text-brand font-bold text-lg">→</span>
+      <div class="bg-white border border-gray-200 rounded-lg px-4 py-3 min-w-[100px]">
+        <p class="font-bold text-xs text-orange-600">DLT Packet</p>
+        <p class="text-[10px] text-gray-400 font-mono">Autosar 바이너리</p>
+      </div>
+      <span class="text-brand font-bold text-lg">→</span>
+      <div class="bg-white border border-gray-200 rounded-lg px-4 py-3 min-w-[100px]">
+        <p class="font-bold text-xs text-green-600">Kafka</p>
+        <p class="text-[10px] text-gray-400 font-mono">3-Node / Zero Loss</p>
+      </div>
+      <span class="text-brand font-bold text-lg">→</span>
+      <div class="bg-white border border-gray-200 rounded-lg px-4 py-3 min-w-[100px]">
+        <p class="font-bold text-xs text-red-600">Redis</p>
+        <p class="text-[10px] text-gray-400 font-mono">0.001s 판별</p>
+      </div>
+      <span class="text-brand font-bold text-lg">→</span>
+      <div class="bg-white border border-gray-200 rounded-lg px-4 py-3 min-w-[100px]">
+        <p class="font-bold text-xs text-blue-600">HANA DB</p>
+        <p class="text-[10px] text-gray-400 font-mono">CDS 의존성 검증</p>
+      </div>
+      <span class="text-brand font-bold text-lg">→</span>
+      <div class="bg-white border border-gray-200 rounded-lg px-4 py-3 min-w-[100px]">
+        <p class="font-bold text-xs text-purple-600">Feedback</p>
+        <p class="text-[10px] text-gray-400 font-mono">Auto Rollback</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tech Stack -->
+  <div class="bg-gray-50 rounded-2xl p-8 mb-8 border border-gray-100">
+    <p class="text-xs font-bold text-gray-400 mb-6 font-mono">05 &nbsp; 주요 기술 스택</p>
+    <div class="space-y-4">
+      <div class="flex flex-wrap items-center gap-3">
+        <span class="text-xs font-bold text-cyan-600 w-24 flex-shrink-0 font-mono">LANGUAGES</span>
+        <span class="tech-tag tech-tag-cyan">Go</span> <span class="text-xs text-gray-400">고성능 데이터 수집 에이전트</span>
+        <span class="tech-tag tech-tag-green">Python / FastAPI</span> <span class="text-xs text-gray-400">백엔드 분석 엔진</span>
+        <span class="tech-tag tech-tag-orange">SQLScript</span> <span class="text-xs text-gray-400">HANA DB 비즈니스 로직</span>
+      </div>
+      <div class="flex flex-wrap items-center gap-3">
+        <span class="text-xs font-bold text-cyan-600 w-24 flex-shrink-0 font-mono">DATABASE</span>
+        <span class="tech-tag tech-tag-blue">SAP HANA Express</span> <span class="text-xs text-gray-400">인메모리 기반 CDS View · 고속 조인</span>
+      </div>
+      <div class="flex flex-wrap items-center gap-3">
+        <span class="text-xs font-bold text-cyan-600 w-24 flex-shrink-0 font-mono">MESSAGING</span>
+        <span class="tech-tag tech-tag-purple">MQTT</span> <span class="text-xs text-gray-400">차량 · 서버 간 경량 통신</span>
+        <span class="tech-tag tech-tag-green">Kafka 3-Node</span> <span class="text-xs text-gray-400">클러스터 기반 데이터 버퍼링</span>
+      </div>
+      <div class="flex flex-wrap items-center gap-3">
+        <span class="text-xs font-bold text-cyan-600 w-24 flex-shrink-0 font-mono">DEVOPS</span>
+        <span class="tech-tag tech-tag-dark">Docker</span>
+        <span class="tech-tag tech-tag-cyan">Kubernetes(k3s)</span>
+        <span class="tech-tag tech-tag-blue">ArgoCD</span> <span class="text-xs text-gray-400">GitOps 배포 자동화</span>
+        <span class="tech-tag tech-tag-green">Grafana</span> <span class="text-xs text-gray-400">성능 모니터링</span>
+      </div>
+      <div class="flex flex-wrap items-center gap-3">
+        <span class="text-xs font-bold text-cyan-600 w-24 flex-shrink-0 font-mono">SECURITY</span>
+        <span class="tech-tag tech-tag-purple">ISO 21434</span> <span class="text-xs text-gray-400">SHA-256 무결성 검증</span>
+        <span class="tech-tag tech-tag-orange">Autosar DLT</span> <span class="text-xs text-gray-400">바이너리 직렬화 표준</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 핵심 성과 – PAR -->
+  <div class="bg-gray-50 rounded-2xl p-8 mb-8 border border-gray-100">
+    <p class="text-xs font-bold text-gray-400 mb-6 font-mono">06 &nbsp; 핵심 성과 – Problem · Action · Result</p>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="par-card par-p bg-white rounded-xl p-6">
+        <p class="text-xs font-bold text-red-500 mb-1">Problem</p>
+        <h6 class="font-bold text-sm mb-4">기술적 도전</h6>
+        <ul class="space-y-2 text-xs text-gray-600">
+          <li>› ECU 간 버전 의존성 미검증으로 인한 OTA 업데이트 실패(Brick) 현상 – 리콜·인명사고로 직결</li>
+          <li>› 1,000대 에이전트 동시 보고 시 발생하는 트래픽 폭주(Mass Request) 및 DB 병목 현상</li>
+        </ul>
+      </div>
+      <div class="par-card par-a bg-white rounded-xl p-6">
+        <p class="text-xs font-bold text-brand mb-1">Action</p>
+        <h6 class="font-bold text-sm mb-4">해결 방법</h6>
+        <ul class="space-y-2 text-xs text-gray-600">
+          <li><strong>DB-Level Validation</strong> – 의존성 체크를 앱이 아닌 HANA CDS View에서 처리, 정합성·고속 검증 확보</li>
+          <li><strong>Kafka 샌드위치 아키텍처</strong> – MQTT와 DB 사이에 Kafka 배치, 초당 수천 건 요청 버퍼링 및 비동기 처리</li>
+          <li><strong>바이너리 직렬화</strong> – JSON 대신 Autosar DLT 표준 고밀도 바이너리 규격 도입</li>
+        </ul>
+      </div>
+      <div class="par-card par-r bg-white rounded-xl p-6">
+        <p class="text-xs font-bold text-green-600 mb-1">Result</p>
+        <h6 class="font-bold text-sm mb-4">정량적 성과</h6>
+        <div class="space-y-4">
+          <div class="bg-green-50 rounded-lg p-4">
+            <p class="text-2xl font-extrabold text-green-700">30%↓</p>
+            <p class="text-xs text-green-600 font-bold">데이터 전송 효율 개선</p>
+            <p class="text-[10px] text-gray-400">바이너리 패킹으로 페이로드 크기 획기적 절감</p>
+          </div>
+          <div class="bg-green-50 rounded-lg p-4">
+            <p class="text-2xl font-extrabold text-green-700">99.9%</p>
+            <p class="text-xs text-green-600 font-bold">시스템 가동률 달성</p>
+            <p class="text-[10px] text-gray-400">비동기 파이프라인으로 대규모 부하에서도 안정적 가용성 확보</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Core Code Snippets -->
+  <div class="dark-section rounded-2xl p-8 mb-8">
+    <p class="text-xs font-bold text-dark-muted uppercase tracking-widest mb-6 font-mono">Tech Stack & Highlights · 핵심 코드 로직</p>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <!-- Code 1: dlt_agent.go -->
+      <div>
+        <div class="code-block">
+          <div class="code-block-header">
+            <div class="code-dot bg-red-500"></div>
+            <div class="code-dot bg-yellow-500"></div>
+            <div class="code-dot bg-green-500"></div>
+            <span class="text-xs text-dark-muted ml-2 font-mono">dlt_agent.go</span>
+            <span class="ml-auto text-[10px] bg-cyan-900 text-cyan-300 px-2 py-0.5 rounded font-mono">① 고성능 바이너리 직렬화</span>
+          </div>
+          <pre class="p-4 text-xs font-mono text-dark-text overflow-x-auto leading-relaxed"><span class="text-gray-500">// binary.BigEndian — 버전 정보를 3바이트 정수로 압축</span>
+<span class="text-gray-500">// 텍스트(JSON) 대비 페이로드 50% 절감</span>
+buf[offset+4] = <span class="text-cyan-400">byte</span>(major)
+buf[offset+5] = <span class="text-cyan-400">byte</span>(minor)
+buf[offset+6] = <span class="text-cyan-400">byte</span>(patch)
+
+<span class="text-gray-500">// Autosar DLT 표준 패킷 생성</span>
+binaryData, _ := protocol.<span class="text-green-400">CreateDltPacket</span>(
+  "ICU ", "INV ", buf,
+)
+
+<span class="text-gray-500">// 고루틴 비동기 전송 — 블로킹 없이 처리량 극대화</span>
+<span class="text-purple-400">go</span> transport.<span class="text-green-400">SendToBroker</span>(
+  v.Client, v.VIN, binaryData,
+)</pre>
+        </div>
+        <div class="mt-4 bg-dark-card rounded-lg p-4 border border-dark-border">
+          <p class="text-[10px] text-dark-muted uppercase tracking-widest mb-2">TECHNICAL INTENT</p>
+          <p class="font-bold text-sm text-white mb-2">Autosar DLT 바이너리 직렬화</p>
+          <p class="text-xs text-dark-muted leading-relaxed">버전 정보를 바이트 단위로 압축하여 텍스트 JSON 대비 페이로드를 50% 절감. go 키워드로 비동기 전송하여 에이전트 루프 블로킹을 방지한다.</p>
+          <ul class="text-xs text-dark-muted mt-3 space-y-1">
+            <li>▸ BigEndian 3바이트 압축 — 메모리·전송 효율 최적화</li>
+            <li>▸ Goroutine 비동기 전송 — 1,000 에이전트 동시 처리</li>
+            <li>▸ 전송 효율 <span class="text-green-400">30% 개선</span> 달성</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Code 2: hash_verify.go -->
+      <div>
+        <div class="code-block">
+          <div class="code-block-header">
+            <div class="code-dot bg-red-500"></div>
+            <div class="code-dot bg-yellow-500"></div>
+            <div class="code-dot bg-green-500"></div>
+            <span class="text-xs text-dark-muted ml-2 font-mono">hash_verify.go</span>
+            <span class="ml-auto text-[10px] bg-purple-900 text-purple-300 px-2 py-0.5 rounded font-mono">② 보안 무결성 검증 · ISO 21434</span>
+          </div>
+          <pre class="p-4 text-xs font-mono text-dark-text overflow-x-auto leading-relaxed"><span class="text-gray-500">// io.Copy 스트리밍 해시 — 대용량 파일도 메모리 효율적 처리</span>
+hash := sha256.<span class="text-green-400">New</span>()
+
+<span class="text-purple-400">if</span> _, err := io.<span class="text-green-400">Copy</span>(hash, file); err != <span class="text-red-400">nil</span> {
+    <span class="text-purple-400">return</span> <span class="text-red-400">false</span>, err
+}
+
+<span class="text-gray-500">// 실제 해시 계산값 → 16진수 문자열 변환</span>
+actualHash := hex.<span class="text-green-400">EncodeToString</span>(
+  hash.<span class="text-green-400">Sum</span>(<span class="text-red-400">nil</span>),
+)
+
+<span class="text-gray-500">// 서버 제공 Hash와 대조 → 위변조 감지</span>
+<span class="text-purple-400">return</span> actualHash == expectedHash, <span class="text-red-400">nil</span></pre>
+        </div>
+        <div class="mt-4 bg-dark-card rounded-lg p-4 border border-dark-border">
+          <p class="text-[10px] text-dark-muted uppercase tracking-widest mb-2">TECHNICAL INTENT</p>
+          <p class="font-bold text-sm text-white mb-2">ISO 21434 준수 무결성 검증</p>
+          <p class="text-xs text-dark-muted leading-relaxed">io.Copy 스트리밍 방식으로 파일 전체를 메모리에 올리지 않고 해시를 계산하여 대용량 펌웨어도 리소스 낭비 없이 처리한다.</p>
+          <ul class="text-xs text-dark-muted mt-3 space-y-1">
+            <li>▸ 스트리밍 해시 — 파일 크기에 무관한 O(1) 메모리 사용</li>
+            <li>▸ SHA-256 — 위변조 감지, ISO 21434 보안 요구사항 충족</li>
+            <li>▸ 서버 Hash 대조 → 불일치 시 즉시 배포 차단</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Code 3: rollback.go -->
+      <div class="lg:col-span-2">
+        <div class="code-block">
+          <div class="code-block-header">
+            <div class="code-dot bg-red-500"></div>
+            <div class="code-dot bg-yellow-500"></div>
+            <div class="code-dot bg-green-500"></div>
+            <span class="text-xs text-dark-muted ml-2 font-mono">rollback.go</span>
+            <span class="ml-auto text-[10px] bg-orange-900 text-orange-300 px-2 py-0.5 rounded font-mono">③ 자동 복구 · Anti-Bricking</span>
+          </div>
+          <pre class="p-4 text-xs font-mono text-dark-text overflow-x-auto leading-relaxed"><span class="text-gray-500">// DB에서 조회한 이전 안정 버전 경로 사용</span>
+cmdPayload := <span class="text-cyan-400">map</span>[<span class="text-cyan-400">string</span>]<span class="text-cyan-400">string</span>{
+    "file_path":     rollbackFilePath,
+    "expected_hash": rollbackHash,
+}
+
+<span class="text-gray-500">// JSON 직렬화 → MQTT 발행</span>
+data, _ := json.<span class="text-green-400">Marshal</span>(cmdPayload)
+
+<span class="text-gray-500">// QoS 1 — 최소 1회 전달 보장 (Anti-Bricking 신뢰성)</span>
+s.MQTTClient.<span class="text-green-400">Publish</span>(
+    topic,
+    1,        <span class="text-gray-500">// QoS Level 1</span>
+    <span class="text-red-400">false</span>,    <span class="text-gray-500">// retain</span>
+    data,
+)</pre>
+        </div>
+        <div class="mt-4 bg-dark-card rounded-lg p-4 border border-dark-border">
+          <p class="text-[10px] text-dark-muted uppercase tracking-widest mb-2">TECHNICAL INTENT</p>
+          <p class="font-bold text-sm text-white mb-2">트랜잭션 기반 자동 복구</p>
+          <p class="text-xs text-dark-muted leading-relaxed">검증 실패 시 HANA DB에서 조회한 이전 안정 버전 경로를 즉시 ECU로 전송한다. MQTT QoS 1로 롤백 명령 전달을 보장하여 브리킹 상태를 원천 차단한다.</p>
+          <ul class="text-xs text-dark-muted mt-3 space-y-1 grid grid-cols-1 md:grid-cols-3 gap-4">
+            <li>▸ HANA DB 조회 롤백 경로 — 검증된 이전 버전 즉시 복구</li>
+            <li>▸ MQTT QoS 1 — 최소 1회 전달 보장, 명령 유실 방지</li>
+            <li>▸ ISO 24089 롤백 트리거와 연동 — 3등급 Fault 자동 대응</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- =====================================================
+     PROJECT 02 — Dol-AI
+     ===================================================== -->
+<div class="mb-32">
+  <div class="flex items-center gap-4 mb-2">
+    <span class="text-brand font-extrabold text-6xl font-mono leading-none">02</span>
+    <div>
+      <p class="text-xs text-gray-400 font-bold uppercase tracking-widest">Project</p>
+    </div>
+  </div>
+
+  <!-- Project Header -->
+  <div class="dark-section rounded-2xl p-8 md:p-12 mb-8">
+    <h3 class="text-3xl md:text-4xl font-extrabold text-white mb-3">Dol-AI</h3>
+    <p class="text-lg text-purple-400 font-bold mb-2">실시간 AI 스마트 회의 어시스턴스</p>
+    <p class="text-sm text-dark-muted mb-2">Whisper · GraphRAG · WebRTC 기반 다국어 협업 플랫폼</p>
+    <p class="text-dark-muted text-sm leading-relaxed max-w-3xl mb-6">실시간 미팅에 최적화된 AI 정보 시각화 어시스턴스</p>
+    <div class="flex flex-wrap gap-2 mb-6">
+      <span class="tech-tag tech-tag-green">Spring Boot</span>
+      <span class="tech-tag tech-tag-cyan">FastAPI</span>
+      <span class="tech-tag tech-tag-purple">Mediasoup</span>
+      <span class="tech-tag tech-tag-blue">ArangoDB</span>
+      <span class="tech-tag tech-tag-orange">OpenAI Whisper</span>
+      <span class="tech-tag tech-tag-cyan">Azure Translator</span>
+      <span class="tech-tag tech-tag-green">Gemini</span>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-xs mt-6">
+      <div class="bg-dark-card rounded-lg p-3 border border-dark-border">
+        <p class="text-dark-muted">작업 기간</p>
+        <p class="text-white font-bold">2025.03 — 2025.06</p>
+        <p class="text-dark-muted">4개월 · 캡스톤</p>
+      </div>
+      <div class="bg-dark-card rounded-lg p-3 border border-dark-border">
+        <p class="text-dark-muted">팀 구성</p>
+        <p class="text-white font-bold">총 4인</p>
+        <p class="text-dark-muted">프론트 2 · 백엔드 2</p>
+      </div>
+      <div class="bg-dark-card rounded-lg p-3 border border-dark-border">
+        <p class="text-dark-muted">본인 기여도</p>
+        <p class="text-white font-bold">50%</p>
+        <p class="text-dark-muted">백엔드 전담</p>
+      </div>
+      <div class="bg-dark-card rounded-lg p-3 border border-dark-border">
+        <p class="text-dark-muted">프로젝트 유형</p>
+        <p class="text-white font-bold">캡스톤 디자인</p>
+        <p class="text-dark-muted">실서비스 배포</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Project Purpose -->
+  <div class="bg-gray-50 rounded-2xl p-8 mb-8 border border-gray-100">
+    <p class="text-xs font-bold text-gray-400 mb-6 font-mono">01 &nbsp; 프로젝트 목적</p>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+      <div class="bg-white rounded-xl p-6 border-l-4 border-red-400">
+        <p class="text-xs font-bold text-red-500 mb-3">▲ PROBLEM – 해결해야 할 문제</p>
+        <p class="text-sm text-gray-700 leading-relaxed">하루 평균 회의 <strong>3시간 이상</strong>이지만 실제 회의 활용률은 <strong>30% 미만</strong>. 회의록 수동 작성, 핵심 내용 누락, 언어 장벽으로 인한 글로벌 협업 제한이 핵심 문제다.</p>
+      </div>
+      <div class="bg-white rounded-xl p-6 border-l-4 border-green-400">
+        <p class="text-xs font-bold text-green-600 mb-3">✓ SOLUTION – 구현 방향</p>
+        <p class="text-sm text-gray-700 leading-relaxed">각 회의마다 <strong>독립적인 Graph RAG를 실시간으로 동적 생성</strong>하여, 회의 시작 → 발화 인식 → 그래프 구축 → 맥락 보존 → 자동 산출물 파이프라인을 완전 자동화한다.</p>
+      </div>
+    </div>
+    <div class="bg-white rounded-xl p-6 border border-gray-100">
+      <p class="text-sm text-gray-700 leading-relaxed">
+        Whisper 실시간 자막 + Azure 번역 + ArangoDB GraphDB + Gemini LLM 기반 RAG를 결합하여, <strong class="text-brand">회의의 기록·이해·실행을 모두 자동화</strong>하는 AI 스마트 회의 어시스턴트. 한·중·영 다국어를 동시 지원하며 회의 종료 즉시 <span class="text-brand font-semibold">DOCX·PNG 회의록을 자동 생성</span>한다.
+      </p>
+    </div>
+  </div>
+
+  <!-- AS-IS → TO-BE -->
+  <div class="bg-gray-50 rounded-2xl p-8 mb-8 border border-gray-100">
+    <p class="text-xs font-bold text-gray-400 mb-6 font-mono">02 &nbsp; 문제 정의 — AS-IS → TO-BE</p>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="bg-white rounded-xl p-5 border border-gray-100">
+        <p class="text-[10px] font-bold text-orange-500 mb-2 font-mono">AS-IS → TO-BE</p>
+        <p class="text-xs text-gray-400 mb-1">회의 중 핵심 내용 기록 어려움</p>
+        <p class="font-bold text-sm mb-1">실시간 자막 및 자동 요약</p>
+        <p class="text-xs text-gray-500">음성 → 텍스트 실시간 변환하여 핵심 내용 빠짐없이 기록</p>
+      </div>
+      <div class="bg-white rounded-xl p-5 border border-gray-100">
+        <p class="text-[10px] font-bold text-orange-500 mb-2 font-mono">AS-IS → TO-BE</p>
+        <p class="text-xs text-gray-400 mb-1">회의록 수동 작성 — 시간 낭비 & 누락</p>
+        <p class="font-bold text-sm mb-1">다국어 회의록 자동 생성 및 저장</p>
+        <p class="text-xs text-gray-500">한·중·영 회의록 DOCX·PNG 자동 생성</p>
+      </div>
+      <div class="bg-white rounded-xl p-5 border border-gray-100">
+        <p class="text-[10px] font-bold text-orange-500 mb-2 font-mono">AS-IS → TO-BE</p>
+        <p class="text-xs text-gray-400 mb-1">회의 흐름 파악 어려움</p>
+        <p class="font-bold text-sm mb-1">발언 기반 그래프 시각화</p>
+        <p class="text-xs text-gray-500">실시간 GraphDB 연동 — LLM 기반 Graph·RAG로 동적 질의응답</p>
+      </div>
+      <div class="bg-white rounded-xl p-5 border border-gray-100">
+        <p class="text-[10px] font-bold text-orange-500 mb-2 font-mono">AS-IS → TO-BE</p>
+        <p class="text-xs text-gray-400 mb-1">언어 장벽으로 글로벌 협업 제한</p>
+        <p class="font-bold text-sm mb-1">실시간 다국어 자막 & 협업 확대</p>
+        <p class="text-xs text-gray-500">Whisper + Azure Translator 실시간 번역으로 글로벌 협업 지원</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 인력 구성 및 기여도 -->
+  <div class="bg-gray-50 rounded-2xl p-8 mb-8 border border-gray-100">
+    <p class="text-xs font-bold text-gray-400 mb-6 font-mono">03 &nbsp; 인력 구성 및 기여도</p>
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm">
+        <thead>
+          <tr class="text-xs text-gray-400 border-b border-gray-200">
+            <th class="text-left py-3 px-3 font-semibold">구성원</th>
+            <th class="text-left py-3 px-3 font-semibold">포지션</th>
+            <th class="text-left py-3 px-3 font-semibold">담당 영역</th>
+            <th class="text-left py-3 px-3 font-semibold">기여도</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b border-gray-100 bg-brand-50/50">
+            <td class="py-3 px-3 font-bold">본인 <span class="text-brand">[본인]</span></td>
+            <td class="py-3 px-3"><span class="tech-tag tech-tag-blue text-[10px]">Backend</span></td>
+            <td class="py-3 px-3 text-xs text-gray-600">Spring Boot API 서버, GraphRAG 파이프라인, ArangoDB 실시간 그래프 설계, 회의록 자동 생성</td>
+            <td class="py-3 px-3 font-bold text-brand">40%</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="py-3 px-3">팀원 (백엔드)</td>
+            <td class="py-3 px-3"><span class="tech-tag tech-tag-blue text-[10px]">Backend</span></td>
+            <td class="py-3 px-3 text-xs text-gray-600">FastAPI LLM 연동, Whisper STT 서버, MySQL 스키마 설계</td>
+            <td class="py-3 px-3 font-bold">15%</td>
+          </tr>
+          <tr>
+            <td class="py-3 px-3">팀원 2인 (프론트)</td>
+            <td class="py-3 px-3"><span class="tech-tag tech-tag-green text-[10px]">Frontend</span></td>
+            <td class="py-3 px-3 text-xs text-gray-600">React/Vite UI, tldraw 화이트보드, Electron 앱, 실시간 그래프 시각화</td>
+            <td class="py-3 px-3 font-bold">50%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 주요 업무 및 상세 역할 -->
+  <div class="bg-gray-50 rounded-2xl p-8 mb-8 border border-gray-100">
+    <p class="text-xs font-bold text-gray-400 mb-6 font-mono">04 &nbsp; 주요 업무 및 상세 역할</p>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="bg-white rounded-xl p-6 border border-gray-100">
+        <h5 class="text-sm font-bold text-brand mb-4 font-mono">SPRING BOOT API 서버</h5>
+        <ul class="space-y-2 text-xs text-gray-600">
+          <li>› 회의 세션 생성·관리 REST API 설계</li>
+          <li>› Redis 기반 실시간 세션 상태 관리</li>
+          <li>› MySQL 회의 데이터 영속성 처리</li>
+          <li>› Nginx 리버스 프록시 + AWS EC2 배포</li>
+        </ul>
+      </div>
+      <div class="bg-white rounded-xl p-6 border border-gray-100">
+        <h5 class="text-sm font-bold text-purple-600 mb-4 font-mono">GRAPHRAG 파이프라인</h5>
+        <ul class="space-y-2 text-xs text-gray-600">
+          <li>› ArangoDB 실시간 노드·엣지 동적 구성</li>
+          <li>› 발화 데이터 → 그래프 변환 로직 설계</li>
+          <li>› Gemini LLM 기반 그래프 질의응답(RAG)</li>
+          <li>› 회의별 독립 그래프 생성·격리</li>
+        </ul>
+      </div>
+      <div class="bg-white rounded-xl p-6 border border-gray-100">
+        <h5 class="text-sm font-bold text-orange-600 mb-4 font-mono">회의록 자동 생성</h5>
+        <ul class="space-y-2 text-xs text-gray-600">
+          <li>› STT 로그 → DOCX·PNG 자동 변환 파이프라인</li>
+          <li>› 한·중·영 다국어 회의록 동시 생성</li>
+          <li>› AWS S3 파일 저장 및 다운로드 API</li>
+          <li>› 투두 리스트 자동 추출 및 저장</li>
+        </ul>
+      </div>
+      <div class="bg-white rounded-xl p-6 border border-gray-100">
+        <h5 class="text-sm font-bold text-cyan-600 mb-4 font-mono">인프라 & 통합</h5>
+        <ul class="space-y-2 text-xs text-gray-600">
+          <li>› Docker Compose 멀티 서버 오케스트레이션</li>
+          <li>› Mediasoup SFU ↔ Spring Boot 연동</li>
+          <li>› Whisper STT 서버 비동기 연동</li>
+          <li>› AWS EC2 + S3 + Redis 클라우드 구성</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Architecture Diagram for Dol-AI -->
+  <div class="dark-section rounded-2xl p-8 md:p-12 mb-8">
+    <p class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-2 font-mono">ARCHITECTURE</p>
+    <h4 class="text-2xl font-extrabold text-white mb-2">Dol-Ai — 시스템 아키텍처</h4>
+    <h5 class="text-base font-bold text-purple-400 mb-8">WebRTC SFU · STT Pipeline · GraphRAG 실시간 처리</h5>
+    <p class="text-xs text-dark-muted mb-6">Mediasoup SFU · OpenAI Whisper · ArangoDB · Spring Boot · FastAPI · AWS</p>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <div class="lg:col-span-7">
+        <div class="border border-dark-border rounded-lg p-4 mb-4">
+          <p class="text-xs text-dark-muted font-mono mb-3">SYSTEM ARCHITECTURE · DolAi</p>
+          <div class="grid grid-cols-2 gap-4 mb-4">
+            <div class="border border-dark-border rounded p-3">
+              <p class="text-xs font-bold text-white mb-2">FRONTEND</p>
+              <div class="bg-dark-card border border-dark-border rounded p-2 mb-2">
+                <p class="text-xs text-green-400 font-bold">UI Layer</p>
+                <p class="text-[10px] text-dark-muted">React · Vite · TypeScript · Recharts · tldraw · Electron</p>
+              </div>
+              <div class="bg-dark-card border border-dark-border rounded p-2">
+                <p class="text-xs text-green-400 font-bold">Interaction</p>
+                <p class="text-[10px] text-dark-muted">Axios · react-rnd</p>
+              </div>
+            </div>
+            <div class="border border-dark-border rounded p-3">
+              <p class="text-xs font-bold text-white mb-2">BACKEND (CLOUD · AWS EC2)</p>
+              <div class="grid grid-cols-2 gap-2 mb-2">
+                <div class="bg-dark-card border border-dark-border rounded p-2">
+                  <p class="text-xs text-cyan-400 font-bold">STT & Translate</p>
+                  <p class="text-[10px] text-dark-muted">OpenAI Whisper · Azure Translator</p>
+                </div>
+                <div class="bg-dark-card border border-dark-border rounded p-2">
+                  <p class="text-xs text-purple-400 font-bold">SFU Server</p>
+                  <p class="text-[10px] text-dark-muted">Mediasoup · TURN Server</p>
+                </div>
+              </div>
+              <div class="grid grid-cols-2 gap-2 mb-2">
+                <div class="bg-dark-card border border-dark-border rounded p-2">
+                  <p class="text-xs text-green-400 font-bold">API Server</p>
+                  <p class="text-[10px] text-dark-muted">Spring Boot · FastAPI (LLM)</p>
+                </div>
+                <div class="bg-dark-card border border-dark-border rounded p-2">
+                  <p class="text-xs text-orange-400 font-bold">Infra Layer</p>
+                  <p class="text-[10px] text-dark-muted">Docker · Nginx · Redis · MySQL · S3</p>
+                </div>
+              </div>
+              <div class="bg-dark-card border border-purple-700 rounded p-2">
+                <p class="text-xs text-purple-400 font-bold">GraphRAG – 관계 기반 Retrieval + LLM 응답</p>
+                <p class="text-[10px] text-dark-muted">ArangoDB (GraphDB) ↔ Gemini LLM · 실시간 노드/엣지 동적 구성</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Real-time Data Pipeline -->
+        <div class="border border-dark-border rounded-lg p-4">
+          <p class="text-xs text-dark-muted font-mono mb-3">REAL-TIME DATA PIPELINE</p>
+          <div class="flex flex-wrap items-center justify-center gap-2 text-center">
+            <div class="bg-dark-card border border-dark-border rounded px-3 py-2">
+              <p class="text-[10px] font-bold text-purple-400">Audio</p>
+              <p class="text-[9px] text-dark-muted">Mediasoup SFU</p>
+            </div>
+            <span class="text-purple-400 text-sm font-bold">→</span>
+            <div class="bg-dark-card border border-dark-border rounded px-3 py-2">
+              <p class="text-[10px] font-bold text-cyan-400">Whisper</p>
+              <p class="text-[9px] text-dark-muted">STT 변환</p>
+            </div>
+            <span class="text-purple-400 text-sm font-bold">→</span>
+            <div class="bg-dark-card border border-dark-border rounded px-3 py-2">
+              <p class="text-[10px] font-bold text-blue-400">Azure</p>
+              <p class="text-[9px] text-dark-muted">다국어 번역</p>
+            </div>
+            <span class="text-purple-400 text-sm font-bold">→</span>
+            <div class="bg-dark-card border border-dark-border rounded px-3 py-2">
+              <p class="text-[10px] font-bold text-green-400">ArangoDB</p>
+              <p class="text-[9px] text-dark-muted">그래프 구축</p>
+            </div>
+            <span class="text-purple-400 text-sm font-bold">→</span>
+            <div class="bg-dark-card border border-dark-border rounded px-3 py-2">
+              <p class="text-[10px] font-bold text-yellow-400">Gemini</p>
+              <p class="text-[9px] text-dark-muted">RAG 질의응답</p>
+            </div>
+            <span class="text-purple-400 text-sm font-bold">→</span>
+            <div class="bg-dark-card border border-dark-border rounded px-3 py-2">
+              <p class="text-[10px] font-bold text-orange-400">회의록</p>
+              <p class="text-[9px] text-dark-muted">DOCX·PNG 생성</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right side details -->
+      <div class="lg:col-span-5 space-y-6">
+        <div>
+          <div class="flex items-center gap-3 mb-3">
+            <span class="w-2 h-2 rounded-full bg-purple-400"></span>
+            <h6 class="font-bold text-sm text-white">WebRTC SFU 서버</h6>
+            <span class="tech-tag tech-tag-purple text-[10px]">Mediasoup</span>
+          </div>
+          <ul class="space-y-1.5 text-xs text-dark-muted ml-5">
+            <li>› Mediasoup SFU — 다자간 화상회의 오디오·비디오 중계</li>
+            <li>› TURN Server로 NAT 환경 P2P 연결 보장</li>
+            <li>› 실시간 오디오 스트림을 Whisper STT 서버로 전달</li>
+          </ul>
+        </div>
+        <div>
+          <div class="flex items-center gap-3 mb-3">
+            <span class="w-2 h-2 rounded-full bg-cyan-400"></span>
+            <h6 class="font-bold text-sm text-white">STT & 번역 파이프라인</h6>
+            <span class="tech-tag tech-tag-cyan text-[10px]">Whisper · Azure</span>
+          </div>
+          <ul class="space-y-1.5 text-xs text-dark-muted ml-5">
+            <li>› OpenAI Whisper — 실시간 음성 → 텍스트 변환</li>
+            <li>› Azure Translator — 한·중·영 실시간 다국어 번역</li>
+            <li>› STT 로그를 MySQL에 저장하여 회의록 생성에 활용</li>
+          </ul>
+        </div>
+        <div>
+          <div class="flex items-center gap-3 mb-3">
+            <span class="w-2 h-2 rounded-full bg-green-400"></span>
+            <h6 class="font-bold text-sm text-white">GraphRAG 엔진</h6>
+            <span class="tech-tag tech-tag-green text-[10px]">ArangoDB · Gemini</span>
+          </div>
+          <ul class="space-y-1.5 text-xs text-dark-muted ml-5">
+            <li>› ArangoDB — 발화 데이터를 실시간 노드·엣지로 구성</li>
+            <li>› 회의마다 <strong class="text-white">독립적인</strong> 그래프 생성, 맥락 격리</li>
+            <li>› Gemini LLM + 그래프 Retrieval로 동적 질의응답</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-10 pt-8 border-t border-dark-border">
+      <div class="text-center">
+        <p class="text-3xl font-extrabold text-purple-400 font-mono italic">3-Lang</p>
+        <p class="text-xs text-dark-muted mt-1">한·중·영<br/>동시 번역·자막</p>
+      </div>
+      <div class="text-center">
+        <p class="text-3xl font-extrabold text-cyan-400 font-mono italic">Real-time</p>
+        <p class="text-xs text-dark-muted mt-1">Graph RAG<br/>동적 생성</p>
+      </div>
+      <div class="text-center">
+        <p class="text-3xl font-extrabold text-green-400 font-mono italic">DOCX+PNG</p>
+        <p class="text-xs text-dark-muted mt-1">회의록<br/>자동 생성</p>
+      </div>
+      <div class="text-center">
+        <p class="text-3xl font-extrabold text-orange-400 font-mono italic">5-Server</p>
+        <p class="text-xs text-dark-muted mt-1">Spring Boot · FastAPI<br/>Mediasoup · WhisperRc · Nginx</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tech Stack -->
+  <div class="bg-gray-50 rounded-2xl p-8 mb-8 border border-gray-100">
+    <p class="text-xs font-bold text-gray-400 mb-6 font-mono">06 &nbsp; 주요 기술 스택</p>
+    <div class="space-y-4">
+      <div class="flex flex-wrap items-center gap-3">
+        <span class="text-xs font-bold text-purple-600 w-24 flex-shrink-0 font-mono">BACKEND</span>
+        <span class="tech-tag tech-tag-green">Spring Boot</span> <span class="text-xs text-gray-400">API 서버·인증·회의 관리</span>
+        <span class="tech-tag tech-tag-cyan">FastAPI</span> <span class="text-xs text-gray-400">LLM 연동·분석 엔진</span>
+        <span class="tech-tag tech-tag-blue">Java · Python</span>
+      </div>
+      <div class="flex flex-wrap items-center gap-3">
+        <span class="text-xs font-bold text-purple-600 w-24 flex-shrink-0 font-mono">AI / NLP</span>
+        <span class="tech-tag tech-tag-orange">OpenAI Whisper</span> <span class="text-xs text-gray-400">실시간 STT</span>
+        <span class="tech-tag tech-tag-cyan">Azure Translator</span> <span class="text-xs text-gray-400">한·중·영 번역</span>
+        <span class="tech-tag tech-tag-green">Gemini LLM</span> <span class="text-xs text-gray-400">RAG 질의응답</span>
+      </div>
+      <div class="flex flex-wrap items-center gap-3">
+        <span class="text-xs font-bold text-purple-600 w-24 flex-shrink-0 font-mono">GRAPH RAG</span>
+        <span class="tech-tag tech-tag-dark">ArangoDB</span> <span class="text-xs text-gray-400">GraphDB · 실시간 노드/엣지 구성</span>
+        <span class="tech-tag tech-tag-green">Gemini</span> <span class="text-xs text-gray-400">그래프 기반 LLM 응답</span>
+      </div>
+      <div class="flex flex-wrap items-center gap-3">
+        <span class="text-xs font-bold text-purple-600 w-24 flex-shrink-0 font-mono">WEBRTC</span>
+        <span class="tech-tag tech-tag-purple">Mediasoup</span> <span class="text-xs text-gray-400">SFU 다자간 미디어 중계</span>
+        <span class="tech-tag tech-tag-orange">TURN Server</span> <span class="text-xs text-gray-400">NAT 관통</span>
+      </div>
+      <div class="flex flex-wrap items-center gap-3">
+        <span class="text-xs font-bold text-purple-600 w-24 flex-shrink-0 font-mono">DATABASE</span>
+        <span class="tech-tag tech-tag-blue">MySQL</span> <span class="text-xs text-gray-400">STT 로그·회의 데이터</span>
+        <span class="tech-tag tech-tag-orange">Redis</span> <span class="text-xs text-gray-400">세션 캐시</span>
+        <span class="tech-tag tech-tag-dark">ArangoDB</span> <span class="text-xs text-gray-400">그래프 데이터</span>
+      </div>
+      <div class="flex flex-wrap items-center gap-3">
+        <span class="text-xs font-bold text-purple-600 w-24 flex-shrink-0 font-mono">INFRA</span>
+        <span class="tech-tag tech-tag-dark">Docker</span>
+        <span class="tech-tag tech-tag-cyan">AWS EC2</span>
+        <span class="tech-tag tech-tag-cyan">AWS S3</span>
+        <span class="tech-tag tech-tag-dark">Nginx</span>
+        <span class="tech-tag tech-tag-green">React · TypeScript</span> <span class="text-xs text-gray-400">Frontend</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAR -->
+  <div class="bg-gray-50 rounded-2xl p-8 mb-8 border border-gray-100">
+    <p class="text-xs font-bold text-gray-400 mb-6 font-mono">07 &nbsp; 핵심 성과 – Problem · Action · Result</p>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="par-card par-p bg-white rounded-xl p-6">
+        <p class="text-xs font-bold text-red-500 mb-1">Problem</p>
+        <h6 class="font-bold text-sm mb-4">기술적 도전</h6>
+        <ul class="space-y-2 text-xs text-gray-600">
+          <li>› 하루 3시간+ 회의에서 <strong>실제 활용률 30% 미만</strong> – 회의 가치 손실</li>
+          <li>› 실시간 다자간 오디오 스트림에서 STT·번역·그래프 구축을 동시 처리하는 레이턴시 문제</li>
+          <li>› 회의마다 맥락이 달라 범용 RAG 적용 불가 – 회의별 독립 지식 그래프 필요</li>
+        </ul>
+      </div>
+      <div class="par-card par-a bg-white rounded-xl p-6">
+        <p class="text-xs font-bold text-brand mb-1">Action</p>
+        <h6 class="font-bold text-sm mb-4">해결 방법</h6>
+        <ul class="space-y-2 text-xs text-gray-600">
+          <li>› <strong>비동기 파이프라인</strong> – Mediasoup 오디오 스트림을 Whisper 서버로 분기, STT·번역·그래프 구축 병렬 처리</li>
+          <li>› <strong>회의별 독립 GraphRAG</strong> – 회의 시작 시 ArangoDB에 신규 그래프 생성, 종료 시 Gemini로 요약·질의응답</li>
+          <li>› <strong>DOCX·PNG 자동 생성</strong> – STT 로그 기반 다국어 회의록 자동 렌더링 및 S3 저장</li>
+        </ul>
+      </div>
+      <div class="par-card par-r bg-white rounded-xl p-6">
+        <p class="text-xs font-bold text-green-600 mb-1">Result</p>
+        <h6 class="font-bold text-sm mb-4">정량적 성과</h6>
+        <div class="space-y-4">
+          <div class="bg-green-50 rounded-lg p-4">
+            <p class="text-xl font-extrabold text-green-700">3-Lang</p>
+            <p class="text-xs text-green-600 font-bold">한·중·영 실시간 자막</p>
+            <p class="text-[10px] text-gray-400">언어 장벽 없는 글로벌 협업 구현</p>
+          </div>
+          <div class="bg-green-50 rounded-lg p-4">
+            <p class="text-xl font-extrabold text-green-700">100%</p>
+            <p class="text-xs text-green-600 font-bold">회의록 자동화</p>
+            <p class="text-[10px] text-gray-400">수동 작성 0, 종료 즉시 DOCX·PNG 생성</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Core Code for Dol-AI -->
+  <div class="dark-section rounded-2xl p-8 mb-8">
+    <p class="text-xs font-bold text-dark-muted uppercase tracking-widest mb-6 font-mono">Tech Stack & Highlights · 핵심 코드 로직</p>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <!-- GraphService.java -->
+      <div>
+        <div class="code-block">
+          <div class="code-block-header">
+            <div class="code-dot bg-red-500"></div>
+            <div class="code-dot bg-yellow-500"></div>
+            <div class="code-dot bg-green-500"></div>
+            <span class="text-xs text-dark-muted ml-2 font-mono">GraphService.java</span>
+            <span class="ml-auto text-[10px] bg-green-900 text-green-300 px-2 py-0.5 rounded font-mono">① 실시간 GraphRAG 노드·엣지 구축</span>
+          </div>
+          <pre class="p-4 text-xs font-mono text-dark-text overflow-x-auto leading-relaxed"><span class="text-gray-500">// 발화 텍스트 → ArangoDB 그래프 노드 실시간 저장</span>
+<span class="text-purple-400">public void</span> <span class="text-green-400">addSpeechNode</span>(String meetingId, SpeechDto speech) {
+  <span class="text-gray-500">// 발화자·키워드를 노드로 생성</span>
+  Map&lt;String, Object&gt; node = Map.of(
+    "_key",    speech.getId(),
+    "speaker", speech.getSpeaker(),
+    "text",    speech.getText(),
+    "ts",      Instant.now().toEpochMilli()
+  );
+  arangoDb.collection(meetingId + "_nodes")
+          .insertDocument(node);
+
+  <span class="text-gray-500">// 이전 발화와 엣지(관계) 연결</span>
+  <span class="text-purple-400">if</span> (prevNodeKey != <span class="text-red-400">null</span>) {
+    Map&lt;String, Object&gt; edge = Map.of(
+      "_from", meetingId + "_nodes/" + prevNodeKey,
+      "_to",   meetingId + "_nodes/" + speech.getId(),
+      "rel",   "FOLLOWS"
+    );
+    arangoDb.collection(meetingId + "_edges")
+            .insertDocument(edge);
+  }
+}</pre>
+        </div>
+        <div class="mt-4 bg-dark-card rounded-lg p-4 border border-dark-border">
+          <p class="text-[10px] text-dark-muted uppercase tracking-widest mb-2">TECHNICAL INTENT</p>
+          <p class="font-bold text-sm text-white mb-2">회의별 독립 GraphRAG</p>
+          <p class="text-xs text-dark-muted leading-relaxed">발화가 들어올 때마다 ArangoDB에 실시간으로 노드와 엣지를 추가하여 회의 맥락을 그래프로 누적한다. meetingId를 컬렉션 키로 사용해 회의별 그래프를 완전히 격리한다.</p>
+          <ul class="text-xs text-dark-muted mt-3 space-y-1">
+            <li>▸ 발화 순서 엣지 — 대화 흐름 맥락 보존</li>
+            <li>▸ 회의 ID별 컬렉션 격리 — 데이터 충돌 방지</li>
+            <li>▸ Gemini RAG에 그래프 컨텍스트 전달</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- SttPipelineService.java -->
+      <div>
+        <div class="code-block">
+          <div class="code-block-header">
+            <div class="code-dot bg-red-500"></div>
+            <div class="code-dot bg-yellow-500"></div>
+            <div class="code-dot bg-green-500"></div>
+            <span class="text-xs text-dark-muted ml-2 font-mono">SttPipelineService.java</span>
+            <span class="ml-auto text-[10px] bg-cyan-900 text-cyan-300 px-2 py-0.5 rounded font-mono">② STT → 번역 → 그래프 비동기 파이프라인</span>
+          </div>
+          <pre class="p-4 text-xs font-mono text-dark-text overflow-x-auto leading-relaxed"><span class="text-gray-500">// Whisper STT 결과 수신 후 비동기 처리</span>
+<span class="text-orange-400">@Async</span>
+<span class="text-purple-400">public</span> CompletableFuture&lt;Void&gt; <span class="text-green-400">processSttResult</span>(
+    SttResult stt
+) {
+  <span class="text-purple-400">return</span> CompletableFuture
+    <span class="text-gray-500">// 1. Azure 다국어 번역</span>
+    .supplyAsync(() →
+      translationService.translateAll(
+        stt.getText(), "ko", "en", "zh"
+      )
+    )
+    <span class="text-gray-500">// 2. 번역 결과 → 그래프 노드 추가</span>
+    .thenAcceptAsync(translations → {
+      graphService.addSpeechNode(
+        stt.getMeetingId(),
+        <span class="text-purple-400">new</span> SpeechDto(stt, translations)
+      );
+    })
+    <span class="text-gray-500">// 3. MySQL STT 로그 저장</span>
+    .thenRunAsync(() →
+      sttLogRepo.save(<span class="text-purple-400">new</span> SttLog(stt))
+    );
+}</pre>
+        </div>
+        <div class="mt-4 bg-dark-card rounded-lg p-4 border border-dark-border">
+          <p class="text-[10px] text-dark-muted uppercase tracking-widest mb-2">TECHNICAL INTENT</p>
+          <p class="font-bold text-sm text-white mb-2">Non-blocking 파이프라인</p>
+          <p class="text-xs text-dark-muted leading-relaxed">@Async + CompletableFuture로 STT → 번역 → 그래프 → DB 저장을 논블로킹 체이닝. 각 단계가 완료되는 순서대로 처리되어 메인 스레드 블로킹 없이 실시간 처리를 보장한다.</p>
+          <ul class="text-xs text-dark-muted mt-3 space-y-1">
+            <li>▸ CompletableFuture 체이닝 — 순차 처리를 비동기로</li>
+            <li>▸ 번역·그래프·DB 저장 3단계 병렬 처리</li>
+            <li>▸ 실시간 자막 레이턴시 최소화</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ReportGenerationService.java -->
+      <div class="lg:col-span-2">
+        <div class="code-block">
+          <div class="code-block-header">
+            <div class="code-dot bg-red-500"></div>
+            <div class="code-dot bg-yellow-500"></div>
+            <div class="code-dot bg-green-500"></div>
+            <span class="text-xs text-dark-muted ml-2 font-mono">ReportGenerationService.java</span>
+            <span class="ml-auto text-[10px] bg-orange-900 text-orange-300 px-2 py-0.5 rounded font-mono">③ 다국어 회의록 자동 생성 · S3 저장</span>
+          </div>
+          <pre class="p-4 text-xs font-mono text-dark-text overflow-x-auto leading-relaxed"><span class="text-gray-500">// 회의 종료 시 다국어 회의록 자동 생성</span>
+<span class="text-purple-400">public</span> ReportResult <span class="text-green-400">generateReport</span>(String meetingId) {
+  <span class="text-gray-500">// 1. STT 로그 전체 조회</span>
+  List&lt;SttLog&gt; logs = sttLogRepo
+    .findByMeetingIdOrderByCreatedAt(meetingId);
+
+  <span class="text-gray-500">// 2. Gemini로 요약 및 투두 추출</span>
+  String summary = geminiService.summarize(logs);
+  List&lt;String&gt; todos = geminiService.extractTodos(logs);
+
+  <span class="text-gray-500">// 3. 한·중·영 DOCX 생성</span>
+  <span class="text-purple-400">for</span> (String lang : List.of("ko", "en", "zh")) {
+    <span class="text-purple-400">byte</span>[] docx = docxRenderer.render(logs, summary, lang);
+    String url  = s3Service.upload(
+      "reports/" + meetingId + "_" + lang + ".docx", docx
+    );
+    reportRepo.saveUrl(meetingId, lang, url);
+  }
+  <span class="text-purple-400">return new</span> ReportResult(summary, todos);
+}</pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- =====================================================
+     PROJECT 03 — Watt-Up
+     ===================================================== -->
+<div class="mb-20">
+  <div class="flex items-center gap-4 mb-2">
+    <span class="text-brand font-extrabold text-6xl font-mono leading-none">03</span>
+    <div>
+      <p class="text-xs text-gray-400 font-bold uppercase tracking-widest">Project</p>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <div class="dark-section rounded-2xl p-8 md:p-12 mb-8">
+    <h3 class="text-3xl md:text-4xl font-extrabold text-white mb-3">Watt-Up</h3>
+    <p class="text-lg text-green-400 font-bold mb-2">CQRS 아키텍처와 Kubernetes 기반의 고가용성 전기차(EV) 충전 예약 플랫폼</p>
+    <p class="text-dark-muted text-sm leading-relaxed max-w-3xl mb-6">전국 충전 인프라 확인부터 실시간 예약까지, 멈춤 없는 EV 라이프를 경험하세요.</p>
+    <div class="flex flex-wrap gap-2 mb-6">
+      <span class="tech-tag tech-tag-cyan">FastAPI</span>
+      <span class="tech-tag tech-tag-blue">PostgreSQL(PostGIS)</span>
+      <span class="tech-tag tech-tag-dark">MongoDB</span>
+      <span class="tech-tag tech-tag-green">Kafka KRaft</span>
+      <span class="tech-tag tech-tag-orange">Debezium CDC</span>
+      <span class="tech-tag tech-tag-purple">Kubernetes</span>
+      <span class="tech-tag tech-tag-dark">Jenkins</span>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-xs mt-6">
+      <div class="bg-dark-card rounded-lg p-3 border border-dark-border">
+        <p class="text-dark-muted">작업 기간</p>
+        <p class="text-white font-bold">2026.02.23 — 2026.03.13</p>
+        <p class="text-dark-muted">2주</p>
+      </div>
+      <div class="bg-dark-card rounded-lg p-3 border border-dark-border">
+        <p class="text-dark-muted">팀 구성</p>
+        <p class="text-white font-bold">총 6인</p>
+        <p class="text-dark-muted">BE 2 · FE 2 · Infra 2</p>
+      </div>
+      <div class="bg-dark-card rounded-lg p-3 border border-dark-border">
+        <p class="text-dark-muted">본인 담당</p>
+        <p class="text-white font-bold">DB · CDC · Infra</p>
+        <p class="text-dark-muted">CQRS · Kafka · Jenkins</p>
+      </div>
+      <div class="bg-dark-card rounded-lg p-3 border border-dark-border">
+        <p class="text-dark-muted">프로젝트 유형</p>
+        <p class="text-white font-bold">팀 프로젝트</p>
+        <p class="text-dark-muted">온프레미스</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Project Purpose -->
+  <div class="bg-gray-50 rounded-2xl p-8 mb-8 border border-gray-100">
+    <p class="text-xs font-bold text-gray-400 mb-6 font-mono">01 &nbsp; 프로젝트 목적</p>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+      <div class="bg-white rounded-xl p-6 border-l-4 border-red-400">
+        <p class="text-xs font-bold text-red-500 mb-3">▲ 배경 – 해결해야 할 문제</p>
+        <p class="text-sm text-gray-700 leading-relaxed">전기차 보급 급증에 따라 충전소 정보가 파편화되어 사용자의 <strong>정보 접근성과 신뢰도가 저하</strong>되는 문제 발생. 단일 서비스에서 실시간 현황 확인과 예약이 불가능한 상황.</p>
+      </div>
+      <div class="bg-white rounded-xl p-6 border-l-4 border-green-400">
+        <p class="text-xs font-bold text-green-600 mb-3">✓ 목적 – 구현 방향</p>
+        <p class="text-sm text-gray-700 leading-relaxed">공공데이터 API를 활용하여 실시간 충전소 현황을 확인하고, <strong>즉시 예약 가능한 신뢰성 높은 통합 서비스를 구축</strong>한다. CQRS 패턴과 CDC 파이프라인으로 읽기·쓰기 성능을 분리 최적화한다.</p>
+      </div>
+    </div>
+    <div class="bg-white rounded-xl p-6 border border-gray-100">
+      <p class="text-sm text-gray-700 leading-relaxed">
+        공공데이터 기반 전기차 충전소 정보를 <strong class="text-brand">PostgreSQL(PostGIS)</strong>에 적재하고, <strong class="text-brand">Debezium CDC → Kafka 3-Node → MongoDB</strong>로 이어지는 실시간 동기화 파이프라인을 구축한다. <strong class="text-brand">CQRS 패턴</strong>으로 쓰기(PostgreSQL)와 읽기(MongoDB)를 분리하여 대용량 조회 성능을 최적화하며, <strong class="text-brand">Kubernetes 4-Node 클러스터</strong>와 <strong class="text-brand">Jenkins DooD CI</strong>로 온프레미스 인프라를 완성한다.
+      </p>
+    </div>
+  </div>
+
+  <!-- 주요 기능 -->
+  <div class="bg-gray-50 rounded-2xl p-8 mb-8 border border-gray-100">
+    <p class="text-xs font-bold text-gray-400 mb-6 font-mono">02 &nbsp; 주요 기능</p>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="bg-white rounded-xl p-5 border border-gray-100">
+        <p class="text-[10px] font-bold text-green-500 mb-2 font-mono">01 · 지역 기반 탐색</p>
+        <p class="font-bold text-sm mb-1">지역구 선택 → 지도 자동 이동</p>
+        <p class="text-xs text-gray-500">드롭다운으로 지역구를 선택하면 지도가 자동 이동하며 해당 구역 내 충전소 위치를 클러스터 마커로 즉시 표시, 직관적인 탐색 지원</p>
+      </div>
+      <div class="bg-white rounded-xl p-5 border border-gray-100">
+        <p class="text-[10px] font-bold text-blue-500 mb-2 font-mono">02 · 스마트 클러스터링</p>
+        <p class="font-bold text-sm mb-1">줌 레벨 기반 동적 그룹화</p>
+        <p class="text-xs text-gray-500">지도 줌 레벨 변화에 따라 충전소 그룹을 동적으로 병합·분리하며 그룹 내 충전소 수 및 개별 충전기 수를 시각화</p>
+      </div>
+      <div class="bg-white rounded-xl p-5 border border-gray-100">
+        <p class="text-[10px] font-bold text-purple-500 mb-2 font-mono">03 · 실시간 정보 모달</p>
+        <p class="font-bold text-sm mb-1">마커 클릭 → 상세 슬라이드 오픈</p>
+        <p class="text-xs text-gray-500">충전기 상세 스펙, 현장 이미지, 현재 예약 가능 시간표를 실시간으로 제공</p>
+      </div>
+      <div class="bg-white rounded-xl p-5 border border-gray-100">
+        <p class="text-[10px] font-bold text-orange-500 mb-2 font-mono">04 · 간편 예약 시스템</p>
+        <p class="font-bold text-sm mb-1">전화번호 입력만으로 예약 완료</p>
+        <p class="text-xs text-gray-500">복잡한 회원가입 없이, 예약자 전화번호 입력만으로 빈 시간대 충전기를 즉시 점유하고 예약을 확정하는 간편 시스템</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 인력 구성 -->
+  <div class="bg-gray-50 rounded-2xl p-8 mb-8 border border-gray-100">
+    <p class="text-xs font-bold text-gray-400 mb-6 font-mono">03 &nbsp; 인력 구성 및 기여도</p>
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm">
+        <thead>
+          <tr class="text-xs text-gray-400 border-b border-gray-200">
+            <th class="text-left py-3 px-3">구성원</th>
+            <th class="text-left py-3 px-3">포지션</th>
+            <th class="text-left py-3 px-3">담당 영역</th>
+            <th class="text-left py-3 px-3">기여도</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b border-gray-100 bg-brand-50/50">
+            <td class="py-3 px-3 font-bold">본인 포함 (DB 2인) <span class="text-brand">[본인]</span></td>
+            <td class="py-3 px-3"><span class="tech-tag tech-tag-purple text-[10px]">DB·CDC·Infra</span></td>
+            <td class="py-3 px-3 text-xs text-gray-600">CQRS 패턴 설계, PostgreSQL·MongoDB 구축, Debezium CDC 파이프라인, Kafka KRaft 클러스터, 온프레미스 인프라, Jenkins DooD CI</td>
+            <td class="py-3 px-3 font-bold text-brand">40%</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="py-3 px-3">팀원 (BE 2인)</td>
+            <td class="py-3 px-3"><span class="tech-tag tech-tag-blue text-[10px]">Backend</span></td>
+            <td class="py-3 px-3 text-xs text-gray-600">FastAPI 비즈니스 로직, 예약 API, 공공데이터 Importer</td>
+            <td class="py-3 px-3 font-bold">35%</td>
+          </tr>
+          <tr>
+            <td class="py-3 px-3">팀원 (FE 2인)</td>
+            <td class="py-3 px-3"><span class="tech-tag tech-tag-green text-[10px]">Frontend</span></td>
+            <td class="py-3 px-3 text-xs text-gray-600">React UI, Naver Maps API 연동, 클러스터링·예약 화면</td>
+            <td class="py-3 px-3 font-bold">25%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 주요 업무 -->
+  <div class="bg-gray-50 rounded-2xl p-8 mb-8 border border-gray-100">
+    <p class="text-xs font-bold text-gray-400 mb-6 font-mono">04 &nbsp; 주요 업무 및 상세 역할</p>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="bg-white rounded-xl p-6 border border-gray-100">
+        <h5 class="text-sm font-bold text-green-600 mb-4 font-mono">CQRS 패턴 & 데이터베이스 설계</h5>
+        <ul class="space-y-2 text-xs text-gray-600">
+          <li>› PostgreSQL(PostGIS) — 쓰기 전용 Primary DB 설계</li>
+          <li>› MongoDB — 읽기 전용 Read DB 설계 및 구축</li>
+          <li>› 지리 좌표 기반 PostGIS 쿼리 최적화</li>
+          <li>› 충전소·예약 테이블 스키마 설계</li>
+        </ul>
+      </div>
+      <div class="bg-white rounded-xl p-6 border border-gray-100">
+        <h5 class="text-sm font-bold text-orange-600 mb-4 font-mono">CDC 파이프라인 구축</h5>
+        <ul class="space-y-2 text-xs text-gray-600">
+          <li>› Debezium Custom 이미지 빌드 (MongoDB 라이브러리 포함)</li>
+          <li>› Kafka KRaft 3-Node 클러스터 구축</li>
+          <li>› PostgreSQL WAL → Kafka Topic → MongoDB Sync</li>
+          <li>› 컬렉션별 Sink 커넥터 분리 생성</li>
+        </ul>
+      </div>
+      <div class="bg-white rounded-xl p-6 border border-gray-100">
+        <h5 class="text-sm font-bold text-purple-600 mb-4 font-mono">온프레미스 인프라 구축</h5>
+        <ul class="space-y-2 text-xs text-gray-600">
+          <li>› VirtualBox 5-VM 환경 구성 (K8s 4-Node + DB VM)</li>
+          <li>› Kubernetes Cluster — Master + Worker 3대</li>
+          <li>› Nginx Gateway 단일 진입점 설계 (NodePort 30007)</li>
+          <li>› Tailscale VPN 네트워크 보안 통제</li>
+        </ul>
+      </div>
+      <div class="bg-white rounded-xl p-6 border border-gray-100">
+        <h5 class="text-sm font-bold text-cyan-600 mb-4 font-mono">CI/CD – JENKINS DOOD</h5>
+        <ul class="space-y-2 text-xs text-gray-600">
+          <li>› DooD 방식 Jenkins 컨테이너 구성 (호스트 소켓 공유)</li>
+          <li>› GitHub → Docker Hub 이미지 빌드·푸시 자동화</li>
+          <li>› ArgoCD GitOps CD 파이프라인 연동</li>
+          <li>› 메모리 리미트 설정으로 인프라 서비스 안정성 확보</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- WattUp Architecture -->
+  <div class="dark-section rounded-2xl p-8 md:p-12 mb-8">
+    <p class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-2 font-mono">ARCHITECTURE</p>
+    <h4 class="text-2xl font-extrabold text-white mb-2">WattUp — 시스템 아키텍처</h4>
+    <h5 class="text-base font-bold text-green-400 mb-8">K8s 클러스터 · CDC 파이프라인 · CQRS 패턴</h5>
+    <p class="text-xs text-dark-muted mb-6">Kubernetes 4-Node · Debezium CDC · Kafka Kraft 3-Node · PostgreSQL(PostGIS) · MongoDB</p>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <div class="lg:col-span-7">
+        <div class="border border-dark-border rounded-lg p-4 mb-4">
+          <p class="text-xs text-dark-muted font-mono mb-3">SYSTEM ARCHITECTURE · WattUp (5-VM On-Premise)</p>
+
+          <div class="grid grid-cols-2 gap-4 mb-4">
+            <div class="border border-dark-border rounded p-3">
+              <p class="text-xs font-bold text-white mb-2">K8S 클러스터 (VIRTUALBOX 4-NODE)</p>
+              <div class="bg-dark-card border border-dark-border rounded p-2 mb-2">
+                <p class="text-xs text-cyan-400 font-bold">Service – Nginx NodePort (30007)</p>
+                <p class="text-[10px] text-dark-muted">단일 진입점 · Host:30007 → VIP포트포워딩 → NodePort</p>
+              </div>
+              <div class="grid grid-cols-2 gap-2">
+                <div class="bg-dark-card border border-dark-border rounded p-2 text-center">
+                  <p class="text-xs text-green-400 font-bold">FE Service</p>
+                  <p class="text-[10px] text-dark-muted">React / Maps ClusterIP</p>
+                </div>
+                <div class="bg-dark-card border border-dark-border rounded p-2 text-center">
+                  <p class="text-xs text-green-400 font-bold">BE Service</p>
+                  <p class="text-[10px] text-dark-muted">FastAPI ClusterIP</p>
+                </div>
+              </div>
+            </div>
+            <div class="border border-dark-border rounded p-3">
+              <p class="text-xs font-bold text-white mb-2">외부 DB VM (STATEFUL 분리)</p>
+              <div class="bg-dark-card border border-dark-border rounded p-2 mb-2">
+                <p class="text-xs text-orange-400 font-bold">Importer</p>
+                <p class="text-[10px] text-dark-muted">공공데이터 초기 적재</p>
+              </div>
+              <div class="grid grid-cols-2 gap-2">
+                <div class="bg-dark-card border border-blue-700 rounded p-2 text-center">
+                  <p class="text-xs text-blue-400 font-bold">PostgreSQL (PostGIS)</p>
+                  <p class="text-[10px] text-dark-muted">Write DB · WAL 기반 CDC</p>
+                </div>
+                <div class="space-y-2">
+                  <div class="bg-dark-card border border-dark-border rounded p-2 text-center">
+                    <p class="text-xs text-green-400 font-bold">MongoDB</p>
+                    <p class="text-[10px] text-dark-muted">Read DB · 읽기 최적화</p>
+                  </div>
+                  <div class="bg-dark-card border border-orange-700 rounded p-2 text-center">
+                    <p class="text-xs text-orange-400 font-bold">Debezium</p>
+                    <p class="text-[10px] text-dark-muted">CDC Engine · Custom Image</p>
+                  </div>
+                </div>
+              </div>
+              <div class="flex justify-between text-[10px] text-dark-muted mt-2 px-1">
+                <span>← READ (MongoDB)</span>
+                <span>WRITE (PostgreSQL) →</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- CDC Pipeline -->
+          <div class="border border-dark-border rounded-lg p-3">
+            <p class="text-xs text-dark-muted font-mono mb-2">CDC PIPELINE – DEBEZIUM · KAFKA KRAFT 3-NODE</p>
+            <div class="flex flex-wrap items-center justify-center gap-2">
+              <div class="bg-dark-card border border-dark-border rounded px-3 py-1.5 text-center">
+                <p class="text-[10px] font-bold text-orange-400">Importer</p>
+                <p class="text-[9px] text-dark-muted">data init</p>
+              </div>
+              <span class="text-green-400 text-xs font-bold">→</span>
+              <div class="bg-dark-card border border-dark-border rounded px-3 py-1.5 text-center">
+                <p class="text-[10px] font-bold text-blue-400">PostgreSQL</p>
+                <p class="text-[9px] text-dark-muted">WAL Ingest</p>
+              </div>
+              <span class="text-green-400 text-xs font-bold">→</span>
+              <div class="bg-dark-card border border-dark-border rounded px-3 py-1.5 text-center">
+                <p class="text-[10px] font-bold text-orange-400">Debezium</p>
+                <p class="text-[9px] text-dark-muted">db-source</p>
+              </div>
+              <span class="text-green-400 text-xs font-bold">→</span>
+              <div class="bg-dark-card border border-dark-border rounded px-3 py-1.5 text-center">
+                <p class="text-[10px] font-bold text-green-400">Kafka</p>
+                <p class="text-[9px] text-dark-muted">Broker 0~2</p>
+              </div>
+              <span class="text-green-400 text-xs font-bold">→</span>
+            </div>
+          </div>
+
+          <!-- K8s Nodes -->
+          <div class="border border-dark-border rounded-lg p-3 mt-4">
+            <p class="text-xs text-dark-muted font-mono mb-2">K8S 4-NODE 구성</p>
+            <div class="grid grid-cols-4 gap-2">
+              <div class="bg-dark-card border border-dark-border rounded p-2 text-center">
+                <p class="text-xs font-bold text-cyan-400">Master</p>
+                <p class="text-[10px] text-dark-muted">Control Plane · API Server</p>
+              </div>
+              <div class="bg-dark-card border border-dark-border rounded p-2 text-center">
+                <p class="text-xs font-bold text-green-400">Worker 1</p>
+                <p class="text-[10px] text-dark-muted">Nginx Gateway</p>
+              </div>
+              <div class="bg-dark-card border border-dark-border rounded p-2 text-center">
+                <p class="text-xs font-bold text-green-400">Worker 2</p>
+                <p class="text-[10px] text-dark-muted">FastAPI ClusterIP</p>
+              </div>
+              <div class="bg-dark-card border border-dark-border rounded p-2 text-center">
+                <p class="text-xs font-bold text-green-400">Worker 3</p>
+                <p class="text-[10px] text-dark-muted">React FE ClusterIP</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right side -->
+      <div class="lg:col-span-5 space-y-6">
+        <div>
+          <div class="flex items-center gap-3 mb-3">
+            <span class="w-2 h-2 rounded-full bg-blue-400"></span>
+            <h6 class="font-bold text-sm text-white">CQRS + CDC 패턴</h6>
+            <span class="tech-tag tech-tag-blue text-[10px]">Debezium · Kafka</span>
+          </div>
+          <ul class="space-y-1.5 text-xs text-dark-muted ml-5">
+            <li>› 쓰기 — FastAPI → PostgreSQL(PostGIS) 단방향</li>
+            <li>› 읽기 — MongoDB 전용 최적화 컬렉션</li>
+            <li>› PostgreSQL WAL 변경사항을 Debezium이 실시간 캡처 → Kafka → MongoDB 동기화</li>
+            <li>› 컬렉션별 Sink 커넥터 분리로 데이터 격리</li>
+          </ul>
+        </div>
+        <div>
+          <div class="flex items-center gap-3 mb-3">
+            <span class="w-2 h-2 rounded-full bg-purple-400"></span>
+            <h6 class="font-bold text-sm text-white">K8s 인프라 구성</h6>
+            <span class="tech-tag tech-tag-purple text-[10px]">4-Node · NodePort</span>
+          </div>
+          <ul class="space-y-1.5 text-xs text-dark-muted ml-5">
+            <li>› 총 5-VM — K8s 4대(Master+Worker 3) + DB 전용 VM 분리</li>
+            <li>› Nginx NodePort(30007) 단일 진입점 — 프론트/백엔드 내부 ClusterIP만 허용</li>
+            <li>› DB·Kafka 등 Stateful 리소스는 K8s 외부 VM에 배치하여 안정성 확보</li>
+            <li>› Tailscale VPN 네트워크 보안 통제</li>
+          </ul>
+        </div>
+        <div>
+          <div class="flex items-center gap-3 mb-3">
+            <span class="w-2 h-2 rounded-full bg-green-400"></span>
+            <h6 class="font-bold text-sm text-white">Jenkins DooD CI/CD</h6>
+            <span class="tech-tag tech-tag-green text-[10px]">DooD · ArgoCD</span>
+          </div>
+          <ul class="space-y-1.5 text-xs text-dark-muted ml-5">
+            <li>› DooD — 호스트 Docker 소켓 공유로 DinD 오버헤드 제거</li>
+            <li>› GitHub Push → Jenkins 빌드 → Docker Hub 이미지 Push</li>
+            <li>› ArgoCD GitOps — manifest 변경 감지 → K8s Pod 자동 교체</li>
+            <li>› 메모리 리미트 2g로 DB 서비스 안정성 보장</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-10 pt-8 border-t border-dark-border">
+      <div class="text-center">
+        <p class="text-3xl font-extrabold text-cyan-400 font-mono italic">5-VM</p>
+        <p class="text-xs text-dark-muted mt-1">온프레미스<br/>VirtualBox 구성</p>
+      </div>
+      <div class="text-center">
+        <p class="text-3xl font-extrabold text-blue-400 font-mono italic">CQRS</p>
+        <p class="text-xs text-dark-muted mt-1">읽기/쓰기 완전<br/>분리 분리</p>
+      </div>
+      <div class="text-center">
+        <p class="text-3xl font-extrabold text-green-400 font-mono italic">3-Node</p>
+        <p class="text-xs text-dark-muted mt-1">Kafka Kraft<br/>클러스터</p>
+      </div>
+      <div class="text-center">
+        <p class="text-3xl font-extrabold text-orange-400 font-mono italic">CDC</p>
+        <p class="text-xs text-dark-muted mt-1">Debezium<br/>실시간 동기화</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tech Stack -->
+  <div class="bg-gray-50 rounded-2xl p-8 mb-8 border border-gray-100">
+    <p class="text-xs font-bold text-gray-400 mb-6 font-mono">06 &nbsp; 주요 기술 스택</p>
+    <div class="space-y-4">
+      <div class="flex flex-wrap items-center gap-3">
+        <span class="text-xs font-bold text-green-600 w-28 flex-shrink-0 font-mono">BACKEND</span>
+        <span class="tech-tag tech-tag-cyan">FastAPI</span> <span class="text-xs text-gray-400">API 서버·예약·충전소 로직</span>
+        <span class="tech-tag tech-tag-blue">Python</span>
+      </div>
+      <div class="flex flex-wrap items-center gap-3">
+        <span class="text-xs font-bold text-green-600 w-28 flex-shrink-0 font-mono">Database</span>
+        <span class="tech-tag tech-tag-blue">PostgreSQL (PostGIS)</span> <span class="text-xs text-gray-400">Write DB · 지리 좌표 쿼리</span>
+        <span class="tech-tag tech-tag-dark">MongoDB</span> <span class="text-xs text-gray-400">Read DB · 읽기 최적화</span>
+      </div>
+      <div class="flex flex-wrap items-center gap-3">
+        <span class="text-xs font-bold text-green-600 w-28 flex-shrink-0 font-mono">CDC · Streaming</span>
+        <span class="tech-tag tech-tag-green">Kafka KRaft 3-Node</span>
+        <span class="tech-tag tech-tag-orange">Debezium</span> <span class="text-xs text-gray-400">CDC · Custom Docker Image</span>
+      </div>
+      <div class="flex flex-wrap items-center gap-3">
+        <span class="text-xs font-bold text-green-600 w-28 flex-shrink-0 font-mono">Infra · K8s</span>
+        <span class="tech-tag tech-tag-purple">Kubernetes</span>
+        <span class="tech-tag tech-tag-dark">4-Node VirtualBox</span>
+        <span class="tech-tag tech-tag-dark">Docker</span>
+        <span class="tech-tag tech-tag-orange">Jenkins</span> <span class="text-xs text-gray-400">DooD CI</span>
+        <span class="tech-tag tech-tag-blue">ArgoCD</span> <span class="text-xs text-gray-400">GitOps CD</span>
+        <span class="tech-tag tech-tag-dark">Nginx</span>
+        <span class="tech-tag tech-tag-dark">Tailscale</span>
+      </div>
+      <div class="flex flex-wrap items-center gap-3">
+        <span class="text-xs font-bold text-green-600 w-28 flex-shrink-0 font-mono">Frontend</span>
+        <span class="tech-tag tech-tag-dark">React</span>
+        <span class="tech-tag tech-tag-dark">Naver Maps API</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAR for WattUp -->
+  <div class="bg-gray-50 rounded-2xl p-8 mb-8 border border-gray-100">
+    <p class="text-xs font-bold text-gray-400 mb-6 font-mono">07 &nbsp; 핵심 성과 – Problem · Action · Result</p>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="par-card par-p bg-white rounded-xl p-6">
+        <p class="text-xs font-bold text-red-500 mb-1">Problem</p>
+        <h6 class="font-bold text-sm mb-4">기술적 도전</h6>
+        <ul class="space-y-2 text-xs text-gray-600">
+          <li>› 읽기·쓰기 DB 미분리로 인한 <strong>조회 성능 병목</strong> – 충전소 실시간 현황 조회 시 쓰기 부하 영향</li>
+          <li>› <strong>온프레미스 단일 서버</strong>에서 K8s·Kafka·DB를 동시 운영 시 메모리 고갈 및 OOM Kill 반복</li>
+          <li>› Debezium 기본 이미지에 <strong>MongoDB 라이브러리 부재</strong> – mongo-sink 커넥터 생성 불가</li>
+        </ul>
+      </div>
+      <div class="par-card par-a bg-white rounded-xl p-6">
+        <p class="text-xs font-bold text-brand mb-1">Action</p>
+        <h6 class="font-bold text-sm mb-4">해결 방법</h6>
+        <ul class="space-y-2 text-xs text-gray-600">
+          <li>› <strong>CQRS + CDC</strong> – PostgreSQL 쓰기, MongoDB 읽기 분리. Debezium WAL 캡처 → Kafka → MongoDB 실시간 동기화처리</li>
+          <li>› <strong>Stateful 리소스 VM 분리</strong> – DB·Kafka를 K8s 외부 전용 VM에 배치. JVM Heap 제한(-Xmx512M)으로 OOM 방지</li>
+          <li>› <strong>Custom Debezium 이미지 빌드</strong> – Dockerfile로 MongoDB 커넥터 라이브러리 직접 포함</li>
+        </ul>
+      </div>
+      <div class="par-card par-r bg-white rounded-xl p-6">
+        <p class="text-xs font-bold text-green-600 mb-1">Result</p>
+        <h6 class="font-bold text-sm mb-4">정량적 성과</h6>
+        <div class="space-y-4">
+          <div class="bg-green-50 rounded-lg p-4">
+            <p class="text-xl font-extrabold text-green-700">CQRS</p>
+            <p class="text-xs text-green-600 font-bold">읽기/쓰기 완전 분리</p>
+            <p class="text-[10px] text-gray-400">조회 부하가 Primary DB에 영향 주지 않는 구조 달성</p>
+          </div>
+          <div class="bg-green-50 rounded-lg p-4">
+            <p class="text-xl font-extrabold text-green-700">무중단</p>
+            <p class="text-xs text-green-600 font-bold">CI/CD 파이프라인</p>
+            <p class="text-[10px] text-gray-400">DooD Jenkins + ArgoCD GitOps로 단일 노드 무중단 배포 완성</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Troubleshooting -->
+  <div class="dark-section rounded-2xl p-8 mb-8">
+    <p class="text-xs font-bold text-dark-muted uppercase tracking-widest mb-6 font-mono">Tech Stack & Highlights · 트러블슈팅</p>
+
+    <div class="space-y-6">
+      <!-- TS 01 -->
+      <div class="border border-dark-border rounded-xl p-6">
+        <p class="text-xs font-bold text-cyan-400 mb-3 font-mono">01 &nbsp; Kafka KRaft — meta.properties 생성 실패로 브로커 무한 재시작</p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+          <div>
+            <p class="text-orange-400 font-bold mb-2">문제 상황</p>
+            <ul class="space-y-1 text-dark-muted">
+              <li>› KAFKA_METADATA_LOG_DIR 와 KAFKA_LOG_DIRS 가 각각 /metadata, /data 로 분리 설정</li>
+              <li>› 자동 포맷 스크립트가 metadata만 포맷 → /data 에 meta.properties 미생성</li>
+              <li>› 브로커 Fatal Exception으로 컨테이너 무한 재시작</li>
+            </ul>
+          </div>
+          <div>
+            <p class="text-green-400 font-bold mb-2">해결 방법</p>
+            <ul class="space-y-1 text-dark-muted">
+              <li>› KAFKA_METADATA_LOG_DIR 설정 제거, KAFKA_LOG_DIRS 만 단일 경로로 통합</li>
+              <li>› docker compose down -v 로 오염된 볼륨 삭제 후 Clean Start</li>
+              <li>› KRaft 모드는 경로 분리 시 레이스 컨디션 발생 가능 — 단일 경로 관리 권장</li>
+            </ul>
+          </div>
+          <div>
+            <p class="text-blue-400 font-bold mb-2">결과 & 학습</p>
+            <ul class="space-y-1 text-dark-muted">
+              <li>› 볼륨 초기화 후 Kafka 클러스터 정상 기동</li>
+              <li>› 단순함의 가치 — 경로 분리는 성능 최적화 시에만, 그 외엔 단일화</li>
+              <li>› KRaft는 실행 전 Storage 포맷이 필수임을 확인</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- TS 02 -->
+      <div class="border border-dark-border rounded-xl p-6">
+        <p class="text-xs font-bold text-cyan-400 mb-3 font-mono">02 &nbsp; Debezium JVM OOM Killer — 아무런 로그 없이 컨테이너 조용히 종료</p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+          <div>
+            <p class="text-orange-400 font-bold mb-2">문제 상황</p>
+            <ul class="space-y-1 text-dark-muted">
+              <li>› 서버 잔여 메모리 5.8GB 여유에도 Debezium 컨테이너가 에러 없이 즉시 종료</li>
+              <li>› 단일 DB 서버에 DB 2대·Kafka 3대 밀집 — JVM 기본 힙 과점유로 Linux OOM Killer 동작</li>
+            </ul>
+          </div>
+          <div>
+            <p class="text-green-400 font-bold mb-2">해결 방법</p>
+            <ul class="space-y-1 text-dark-muted">
+              <li>› Docker 메모리 하드 리미트 --memory="1g" 설정</li>
+              <li>› JVM 환경변수 주입: JAVA_OPTS="-Xms512M -Xmx512M"</li>
+              <li>› 불필요한 힙 확장 차단으로 예측 가능한 메모리 사용량 확보</li>
+            </ul>
+          </div>
+          <div>
+            <p class="text-blue-400 font-bold mb-2">결과 & 학습</p>
+            <ul class="space-y-1 text-dark-muted">
+              <li>› 플러그인 스캐닝·초기화 안정 완료, 8083 포트 정상 서비스</li>
+              <li>› <strong>OOM Killer는 에러 로그를 남기지 않음</strong> — 조용한 종료 = 메모리 의심</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- TS 03 -->
+      <div class="border border-dark-border rounded-xl p-6">
+        <p class="text-xs font-bold text-cyan-400 mb-3 font-mono">03 &nbsp; Debezium Custom 이미지 빌드 — MongoDB 커넥터 라이브러리 부재</p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+          <div>
+            <p class="text-orange-400 font-bold mb-2">문제 상황</p>
+            <ul class="space-y-1 text-dark-muted">
+              <li>› Debezium 기본 이미지에 MongoDB 관련 라이브러리 없음 → mongo-sink 커넥터 생성 불가</li>
+              <li>› 단일 mongo-sink 커넥터로 다중 컬렉션 처리 시 데이터 격리 불가</li>
+              <li>› bitnami Kafka 이미지 pull 실패 — 이미지 저장소 업데이트 중단</li>
+            </ul>
+          </div>
+          <div>
+            <p class="text-green-400 font-bold mb-2">해결 방법</p>
+            <ul class="space-y-1 text-dark-muted">
+              <li>› MongoDB 라이브러리를 포함하는 <strong>Custom Dockerfile</strong> 직접 작성·빌드</li>
+              <li>› 컬렉션별 독립 Sink 커넥터 생성 (station·reservation 분리)</li>
+              <li>› bitnami → apache/kafka:3.8.0 으로 이미지 교체</li>
+            </ul>
+          </div>
+          <div>
+            <p class="text-blue-400 font-bold mb-2">결과 & 학습</p>
+            <ul class="space-y-1 text-dark-muted">
+              <li>› mongo-sink 커넥터 정상 등록, 컬렉션 분리 완료</li>
+              <li>› <strong>이미지 커스텀은 어렵지 않음</strong> — Dockerfile로 라이브러리 추가</li>
+              <li>› AI가 버전 수정을 제안해도 직접 Docker Hub에서 이미지 존재 여부 확인 필요</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- TS 04 -->
+      <div class="border border-dark-border rounded-xl p-6">
+        <p class="text-xs font-bold text-cyan-400 mb-3 font-mono">04 &nbsp; Jenkins DooD CI — 호스트 리소스 독식 방지 및 Docker 권한 문제</p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+          <div>
+            <p class="text-orange-400 font-bold mb-2">문제 상황</p>
+            <ul class="space-y-1 text-dark-muted">
+              <li>› Jenkins가 빌드 중 호스트 리소스를 독식 → DB 서비스 다운 위험</li>
+              <li>› Jenkins 컨테이너 내부에서 docker build 권한 없음</li>
+            </ul>
+          </div>
+          <div>
+            <p class="text-green-400 font-bold mb-2">해결 방법</p>
+            <ul class="space-y-1 text-dark-muted">
+              <li>› <strong>DooD(Docker out of Docker)</strong> — 호스트 소켓 공유 방식 채택</li>
+              <li>› -v /var/run/docker.sock:/var/run/docker.sock 마운트</li>
+              <li>› Jenkins 컨테이너 --memory="2g" 하드 리미트 설정</li>
+            </ul>
+          </div>
+          <div>
+            <p class="text-blue-400 font-bold mb-2">결과 & 학습</p>
+            <ul class="space-y-1 text-dark-muted">
+              <li>› GitHub → Docker Hub 이미지 빌드·푸시 자동화 완성</li>
+              <li>› DB·Kafka 서비스 무중단 유지</li>
+              <li>› <strong>DinD vs DooD</strong> — 단일 서버에선 DooD가 오버헤드 없이 유리</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Code: Dockerfile.debezium -->
+      <div class="code-block">
+        <div class="code-block-header">
+          <div class="code-dot bg-red-500"></div>
+          <div class="code-dot bg-yellow-500"></div>
+          <div class="code-dot bg-green-500"></div>
+          <span class="text-xs text-dark-muted ml-2 font-mono">Dockerfile.debezium</span>
+          <span class="ml-auto text-[10px] bg-orange-900 text-orange-300 px-2 py-0.5 rounded font-mono">Custom Debezium — MongoDB 커넥터 포함 이미지 빌드</span>
+        </div>
+        <pre class="p-4 text-xs font-mono text-dark-text overflow-x-auto leading-relaxed"><span class="text-gray-500"># 공식 Debezium Connect 이미지를 베이스로</span>
+<span class="text-purple-400">FROM</span> debezium/connect:2.5
+
+<span class="text-gray-500"># MongoDB 커넥터 플러그인 다운로드 및 설치</span>
+<span class="text-purple-400">USER</span> root
+<span class="text-purple-400">RUN</span> curl -fsSL \
+    https://repo1.maven.org/maven2/io/debezium/debezium-connector-mongodb/2.5.0.Final/debezium-connector-mongodb-2.5.0.Final-plugin.tar... \
+    | tar -xzf - -C /kafka/connect/
+
+<span class="text-gray-500"># kafka-connect-mongodb (MongoDB Sink) 추가</span>
+<span class="text-purple-400">RUN</span> curl -fsSL \
+    https://packages.confluent.io/maven/io/confluent/kafka-connect-mongodb/1.11.2/kafka-connect-mongodb-1.11.2.jar \
+    -o /kafka/connect/mongodb/kafka-connect-mongodb.jar
+
+<span class="text-purple-400">USER</span> 1001
+
+<span class="text-gray-500"># 컬렉션별 Sink 커넥터 REST API 등록 예시</span>
+<span class="text-gray-500"># POST /connectors → station용 커넥터 / reservation용 커넥터 각각 생성</span>
+<span class="text-gray-500"># "topics": "ev_server.public.ev_station" → ev_station 컬렉션</span>
+<span class="text-gray-500"># "topics": "ev_server.public.ev_reservation" → ev_reservation 컬렉션</span></pre>
+      </div>
+    </div>
+  </div>
+</div>
+
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section id="contact" class="py-24 bg-gray-50">
+  <div class="max-w-4xl mx-auto px-6 text-center">
+    <h2 class="text-4xl font-extrabold tracking-tight mb-6 font-kr">
+      함께 만들어갈 <span class="text-brand">프로젝트</span>가 있나요?
+    </h2>
+    <p class="text-gray-500 text-lg mb-10 max-w-xl mx-auto leading-relaxed">
+      단단한 시스템 엔진과 변화에 유연한 서스펜션을 갖춘 엔지니어, 한지운입니다.<br/>
+      새로운 도전을 기다리고 있습니다.
+    </p>
+    <div class="flex flex-wrap justify-center gap-4">
+      <a href="mailto:intothexx@gmail.com" class="bg-brand hover:bg-brand-dark text-white px-8 py-4 rounded-full font-bold text-sm transition-all hover:-translate-y-0.5 shadow-lg shadow-brand/20 flex items-center gap-2">
+        <span class="material-symbols-outlined text-lg">mail</span>
+        intothexx@gmail.com
+      </a>
+      <a href="https://github.com/Wooniq" target="_blank" class="bg-gray-900 hover:bg-gray-800 text-white px-8 py-4 rounded-full font-bold text-sm transition-all hover:-translate-y-0.5 flex items-center gap-2">
+        <span class="material-symbols-outlined text-lg">code</span>
+        GitHub
+      </a>
+      <a href="https://www.linkedin.com/in/jiwoonhan03/" target="_blank" class="border-2 border-brand text-brand hover:bg-brand hover:text-white px-8 py-4 rounded-full font-bold text-sm transition-all flex items-center gap-2">
+        <span class="material-symbols-outlined text-lg">person</span>
+        LinkedIn
+      </a>
+    </div>
+    <p class="text-sm text-gray-400 mt-6">(+82)10-8225-7963</p>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="bg-white border-t border-gray-100 py-8">
+  <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
+    <div class="flex items-center gap-2">
+      <span class="text-lg font-extrabold tracking-tight"><span class="text-brand">HAN</span> JIWOON</span>
+    </div>
+    <p class="text-xs text-gray-400">© 2026 Han Jiwoon. Backend & Infrastructure Engineer Portfolio.</p>
+    <div class="flex items-center gap-6">
+      <a href="https://github.com/Wooniq" target="_blank" class="text-gray-400 hover:text-brand transition-colors text-sm font-semibold">GitHub</a>
+      <a href="https://www.linkedin.com/in/jiwoonhan03/" target="_blank" class="text-gray-400 hover:text-brand transition-colors text-sm font-semibold">LinkedIn</a>
+      <a href="mailto:intothexx@gmail.com" class="text-gray-400 hover:text-brand transition-colors text-sm font-semibold">Email</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Smooth scroll for nav links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      document.getElementById('mobile-menu').classList.add('hidden');
+    }
+  });
+});
+
+// Scroll spy for nav
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-link');
+
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(section => {
+    const top = section.offsetTop - 120;
+    if (pageYOffset >= top) {
+      current = section.getAttribute('id');
+    }
+  });
+  navLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === '#' + current) {
+      link.classList.add('active');
+    }
+  });
+
+  // Navbar shadow on scroll
+  const navbar = document.getElementById('navbar');
+  if (window.scrollY > 10) {
+    navbar.classList.add('shadow-md');
+  } else {
+    navbar.classList.remove('shadow-md');
+  }
+});
+
+// Simple scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = '1';
+      entry.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.bg-gray-50 > div, .dark-section').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(20px)';
+  el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+  observer.observe(el);
+});
+</script>
+</body>
+</html>
