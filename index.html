@@ -211,10 +211,7 @@ tailwind.config = {
           Portfolio
         </h1>
         <p class="text-lg md:text-xl text-gray-500 leading-relaxed max-w-2xl">
-          디지털 경험을 설계하는 엔지니어, <strong class="text-gray-900 font-bold">한지운</strong>입니다.
-        </p>
-        <p class="text-base text-gray-400 leading-relaxed max-w-2xl">
-          단단한 시스템 엔진과 변화에 유연한 서스펜션을 갖춘 엔지니어 한지운 입니다
+          단단한 시스템 엔진과 변화에 유연한 서스펜션을 갖춘 엔지니어 <strong class="text-gray-900 font-bold">한지운</strong>입니다.
         </p>
         <div class="flex flex-wrap items-center gap-4 pt-4">
           <a href="#projects" class="bg-brand hover:bg-brand-dark text-white px-8 py-3.5 rounded-full font-bold text-sm transition-all hover:-translate-y-0.5 shadow-lg shadow-brand/20">프로젝트 보기</a>
@@ -233,15 +230,18 @@ tailwind.config = {
           </div>
           <div>
             <p class="text-3xl font-extrabold text-brand">9,000+</p>
-            <p class="text-xs text-gray-400 font-semibold mt-1">학우 이용 스쿨버스 서버</p>
+            <p class="text-xs text-gray-400 font-semibold mt-1">실사용자 앱 서버 담당</p>
           </div>
         </div>
       </div>
 
       <div class="md:col-span-4 animate-fade-up delay-2">
-        <div class="bg-white rounded-2xl shadow-xl shadow-gray-200/60 p-6 space-y-5 border border-gray-100">
+        <div class="bg-white rounded-2xl shadow-xl shadow-gray-200/60 overflow-hidden border border-gray-100">
+          <div class="aspect-[3/4] overflow-hidden bg-gray-100">
+            <img src="profile.jpg" alt="한지운 프로필" class="w-full h-full object-contain bg-[#c8beb4]"/>
+          </div>
+          <div class="p-6 space-y-5">
           <div class="flex items-center gap-4">
-            <div class="w-16 h-16 rounded-full bg-brand flex items-center justify-center text-white text-2xl font-extrabold">한</div>
             <div>
               <h3 class="font-extrabold text-lg">HAN JIWOON</h3>
               <p class="text-xs text-gray-400">2003.07.05</p>
@@ -264,6 +264,7 @@ tailwind.config = {
               <span class="material-symbols-outlined text-brand text-lg">person</span>
               <a href="https://www.linkedin.com/in/jiwoonhan03/" target="_blank" class="text-brand hover:underline">linkedin.com/in/jiwoonhan03</a>
             </div>
+          </div>
           </div>
         </div>
       </div>
@@ -2124,11 +2125,12 @@ s.MQTTClient.<span class="text-green-400">Publish</span>(
 <section id="contact" class="py-24 bg-gray-50">
   <div class="max-w-4xl mx-auto px-6 text-center">
     <h2 class="text-4xl font-extrabold tracking-tight mb-6 font-kr">
-      함께 만들어갈 <span class="text-brand">프로젝트</span>가 있나요?
+      팀에 <span class="text-brand">기여</span>할 준비가 되어 있습니다
     </h2>
     <p class="text-gray-500 text-lg mb-10 max-w-xl mx-auto leading-relaxed">
-      단단한 시스템 엔진과 변화에 유연한 서스펜션을 갖춘 엔지니어, 한지운입니다.<br/>
-      새로운 도전을 기다리고 있습니다.
+      분산 시스템과 데이터 파이프라인을 설계해온 경험을 바탕으로,<br/>
+      실무에서 즉시 성과를 낼 수 있는 엔지니어가 되겠습니다.<br/>
+      편하게 연락 주세요.
     </p>
     <div class="flex flex-wrap justify-center gap-4">
       <a href="mailto:intothexx@gmail.com" class="bg-brand hover:bg-brand-dark text-white px-8 py-4 rounded-full font-bold text-sm transition-all hover:-translate-y-0.5 shadow-lg shadow-brand/20 flex items-center gap-2">
@@ -2216,7 +2218,7 @@ const observer = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.1 });
 
-document.querySelectorAll('.bg-gray-50 > div, .dark-section').forEach(el => {
+document.querySelectorAll('section > div > .bg-gray-50, section > div > .dark-section, section > .dark-section, .mb-32 > .dark-section, .mb-32 > .bg-gray-50, .mb-20 > .dark-section, .mb-20 > .bg-gray-50').forEach(el => {
   el.style.opacity = '0';
   el.style.transform = 'translateY(20px)';
   el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
