@@ -250,7 +250,7 @@ tailwind.config = {
           <div class="space-y-3 text-sm">
             <div class="flex items-center gap-3">
               <span class="material-symbols-outlined text-brand text-lg">mail</span>
-              <span class="text-gray-600">intothexx@gmail.com</span>
+              <span class="text-gray-600"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f29b9c869d869a978a8ab2959f939b9edc919d9f">[email&#160;protected]</a></span>
             </div>
             <div class="flex items-center gap-3">
               <span class="material-symbols-outlined text-brand text-lg">call</span>
@@ -403,7 +403,7 @@ tailwind.config = {
         <!-- 6 -->
         <div class="flex gap-6 md:gap-8 items-start">
           <div class="hidden md:flex w-16 h-16 rounded-full bg-gray-200 text-gray-600 items-center justify-center flex-shrink-0 z-10">
-            <span class="material-symbols-outlined">mentor</span>
+            <span class="material-symbols-outlined">cast_for_education</span>
           </div>
           <div class="flex-1 bg-white rounded-xl p-6 border border-gray-100 shadow-sm">
             <div class="flex flex-wrap justify-between items-start gap-2">
@@ -448,28 +448,39 @@ tailwind.config = {
   </div>
 
   <!-- Project Header -->
-  <div class="dark-section rounded-2xl p-8 md:p-12 mb-8">
-    <h3 class="text-3xl md:text-4xl font-extrabold text-white mb-3">OTA Dependency Validator</h3>
-    <p class="text-lg text-cyan-400 font-bold mb-2">커넥티드 카 무선 업데이트 안정성 확보를 위한 시스템 진단 및 검증 플랫폼</p>
-    <p class="text-dark-muted text-sm leading-relaxed max-w-3xl mb-6">
-      보이지 않는 곳에서 전장 소프트웨어의 무결성을 지키며,<br/>
-      어떤 업데이트 앞에서도 흔들림 없는 안전한 주행 경험을 보장합니다.
-    </p>
-    <div class="flex flex-wrap gap-2 mb-6">
-      <span class="tech-tag tech-tag-cyan">K3s</span>
-      <span class="tech-tag tech-tag-green">Kafka</span>
-      <span class="tech-tag tech-tag-orange">Redis</span>
-      <span class="tech-tag tech-tag-blue">SAP HANA</span>
-      <span class="tech-tag tech-tag-purple">ISO 24089</span>
-      <span class="tech-tag tech-tag-purple">ISO 3379</span>
-      <span class="tech-tag tech-tag-purple">ISO 21434</span>
-      <span class="tech-tag tech-tag-green">MQTT</span>
-      <span class="tech-tag tech-tag-orange">Autosar DLT</span>
-    </div>
-    <div class="flex flex-wrap gap-6 text-xs text-dark-muted">
-      <span>📅 2026.02 – 진행 중</span>
-      <span>🏢 현대오토에버 모빌리티 SW스쿨</span>
-      <span>👤 1인 개발</span>
+  <div class="relative overflow-hidden rounded-2xl border border-gray-100 mb-8 bg-white shadow-sm project-card transition-all duration-300">
+    <div class="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-cyan-400 via-brand to-brand-light"></div>
+    <div class="absolute -right-4 top-4 text-[110px] font-extrabold text-gray-50 font-mono leading-none select-none pointer-events-none tracking-tighter">01</div>
+    <div class="p-8 md:p-12">
+      <div class="flex flex-wrap items-center gap-3 mb-5">
+        <span class="text-[10px] font-bold text-brand uppercase tracking-[0.18em] font-mono bg-brand-50 px-3 py-1.5 rounded-full border border-brand-lighter">// Infra & Systems</span>
+        <span class="flex items-center gap-1.5 text-[11px] text-gray-400 font-mono">
+          <span class="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse inline-block"></span>
+          진행 중
+        </span>
+      </div>
+      <h3 class="text-3xl md:text-5xl font-extrabold tracking-tight text-gray-900 mb-3 font-kr">OTA Dependency Validator</h3>
+      <p class="text-base md:text-lg font-bold mb-2 text-brand">커넥티드 카 무선 업데이트 안정성 확보를 위한 시스템 진단 및 검증 플랫폼</p>
+      <p class="text-gray-400 text-sm leading-relaxed max-w-3xl mb-8">
+        보이지 않는 곳에서 전장 소프트웨어의 무결성을 지키며,
+        어떤 업데이트 앞에서도 흔들림 없는 안전한 주행 경험을 보장합니다.
+      </p>
+      <div class="flex flex-wrap gap-2 mb-8">
+        <span class="tech-tag tech-tag-cyan">K3s</span>
+        <span class="tech-tag tech-tag-green">Kafka</span>
+        <span class="tech-tag tech-tag-orange">Redis</span>
+        <span class="tech-tag tech-tag-blue">SAP HANA</span>
+        <span class="tech-tag tech-tag-purple">ISO 24089</span>
+        <span class="tech-tag tech-tag-purple">ISO 3379</span>
+        <span class="tech-tag tech-tag-purple">ISO 21434</span>
+        <span class="tech-tag tech-tag-green">MQTT</span>
+        <span class="tech-tag tech-tag-orange">Autosar DLT</span>
+      </div>
+      <div class="flex flex-wrap gap-6 pt-6 border-t border-gray-100 text-xs text-gray-400">
+        <span class="flex items-center gap-2"><span class="material-symbols-outlined text-base text-brand">calendar_month</span>2026.02 – 진행 중</span>
+        <span class="flex items-center gap-2"><span class="material-symbols-outlined text-base text-brand">business</span>현대오토에버 모빌리티 SW스쿨</span>
+        <span class="flex items-center gap-2"><span class="material-symbols-outlined text-base text-brand">person</span>1인 개발</span>
+      </div>
     </div>
   </div>
 
@@ -988,40 +999,50 @@ s.MQTTClient.<span class="text-green-400">Publish</span>(
   </div>
 
   <!-- Project Header -->
-  <div class="dark-section rounded-2xl p-8 md:p-12 mb-8">
-    <h3 class="text-3xl md:text-4xl font-extrabold text-white mb-3">Dol-AI</h3>
-    <p class="text-lg text-purple-400 font-bold mb-2">실시간 AI 스마트 회의 어시스턴스</p>
-    <p class="text-sm text-dark-muted mb-2">Whisper · GraphRAG · WebRTC 기반 다국어 협업 플랫폼</p>
-    <p class="text-dark-muted text-sm leading-relaxed max-w-3xl mb-6">실시간 미팅에 최적화된 AI 정보 시각화 어시스턴스</p>
-    <div class="flex flex-wrap gap-2 mb-6">
-      <span class="tech-tag tech-tag-green">Spring Boot</span>
-      <span class="tech-tag tech-tag-cyan">FastAPI</span>
-      <span class="tech-tag tech-tag-purple">Mediasoup</span>
-      <span class="tech-tag tech-tag-blue">ArangoDB</span>
-      <span class="tech-tag tech-tag-orange">OpenAI Whisper</span>
-      <span class="tech-tag tech-tag-cyan">Azure Translator</span>
-      <span class="tech-tag tech-tag-green">Gemini</span>
-    </div>
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-xs mt-6">
-      <div class="bg-dark-card rounded-lg p-3 border border-dark-border">
-        <p class="text-dark-muted">작업 기간</p>
-        <p class="text-white font-bold">2025.03 — 2025.06</p>
-        <p class="text-dark-muted">4개월 · 캡스톤</p>
+  <div class="relative overflow-hidden rounded-2xl border border-gray-100 mb-8 bg-white shadow-sm project-card transition-all duration-300">
+    <div class="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-purple-400 via-brand-light to-pink-400"></div>
+    <div class="absolute -right-4 top-4 text-[110px] font-extrabold text-gray-50 font-mono leading-none select-none pointer-events-none tracking-tighter">02</div>
+    <div class="p-8 md:p-12">
+      <div class="flex flex-wrap items-center gap-3 mb-5">
+        <span class="text-[10px] font-bold text-purple-600 uppercase tracking-[0.18em] font-mono bg-purple-50 px-3 py-1.5 rounded-full border border-purple-100">// AI & Backend</span>
+        <span class="flex items-center gap-1.5 text-[11px] text-gray-400 font-mono">
+          <span class="material-symbols-outlined text-sm text-yellow-400">emoji_events</span>
+          캡스톤 디자인
+        </span>
       </div>
-      <div class="bg-dark-card rounded-lg p-3 border border-dark-border">
-        <p class="text-dark-muted">팀 구성</p>
-        <p class="text-white font-bold">총 4인</p>
-        <p class="text-dark-muted">프론트 2 · 백엔드 2</p>
+      <h3 class="text-3xl md:text-5xl font-extrabold tracking-tight text-gray-900 mb-2 font-kr">Dol-AI</h3>
+      <p class="text-base md:text-lg font-bold mb-1 text-purple-600">실시간 AI 스마트 회의 어시스턴스</p>
+      <p class="text-sm text-gray-400 mb-6 font-mono">Whisper · GraphRAG · WebRTC 기반 다국어 협업 플랫폼</p>
+      <div class="flex flex-wrap gap-2 mb-8">
+        <span class="tech-tag tech-tag-green">Spring Boot</span>
+        <span class="tech-tag tech-tag-cyan">FastAPI</span>
+        <span class="tech-tag tech-tag-purple">Mediasoup</span>
+        <span class="tech-tag tech-tag-blue">ArangoDB</span>
+        <span class="tech-tag tech-tag-orange">OpenAI Whisper</span>
+        <span class="tech-tag tech-tag-cyan">Azure Translator</span>
+        <span class="tech-tag tech-tag-green">Gemini</span>
       </div>
-      <div class="bg-dark-card rounded-lg p-3 border border-dark-border">
-        <p class="text-dark-muted">본인 기여도</p>
-        <p class="text-white font-bold">50%</p>
-        <p class="text-dark-muted">백엔드 전담</p>
-      </div>
-      <div class="bg-dark-card rounded-lg p-3 border border-dark-border">
-        <p class="text-dark-muted">프로젝트 유형</p>
-        <p class="text-white font-bold">캡스톤 디자인</p>
-        <p class="text-dark-muted">실서비스 배포</p>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3 pt-6 border-t border-gray-100">
+        <div class="bg-gray-50 rounded-xl p-4 border border-gray-100">
+          <p class="text-[10px] text-gray-400 uppercase font-mono mb-1">기간</p>
+          <p class="font-bold text-sm text-gray-900">2025.03 – 06</p>
+          <p class="text-xs text-gray-400">4개월 · 캡스톤</p>
+        </div>
+        <div class="bg-gray-50 rounded-xl p-4 border border-gray-100">
+          <p class="text-[10px] text-gray-400 uppercase font-mono mb-1">팀 구성</p>
+          <p class="font-bold text-sm text-gray-900">총 4인</p>
+          <p class="text-xs text-gray-400">프론트 2 · 백엔드 2</p>
+        </div>
+        <div class="bg-brand-50 rounded-xl p-4 border border-brand-lighter">
+          <p class="text-[10px] text-brand uppercase font-mono mb-1">본인 기여도</p>
+          <p class="font-bold text-sm text-brand">50%</p>
+          <p class="text-xs text-brand/60">백엔드 전담</p>
+        </div>
+        <div class="bg-gray-50 rounded-xl p-4 border border-gray-100">
+          <p class="text-[10px] text-gray-400 uppercase font-mono mb-1">유형</p>
+          <p class="font-bold text-sm text-gray-900">캡스톤 디자인</p>
+          <p class="text-xs text-gray-400">실서비스 배포</p>
+        </div>
       </div>
     </div>
   </div>
@@ -1540,39 +1561,50 @@ s.MQTTClient.<span class="text-green-400">Publish</span>(
   </div>
 
   <!-- Header -->
-  <div class="dark-section rounded-2xl p-8 md:p-12 mb-8">
-    <h3 class="text-3xl md:text-4xl font-extrabold text-white mb-3">Watt-Up</h3>
-    <p class="text-lg text-green-400 font-bold mb-2">CQRS 아키텍처와 Kubernetes 기반의 고가용성 전기차(EV) 충전 예약 플랫폼</p>
-    <p class="text-dark-muted text-sm leading-relaxed max-w-3xl mb-6">전국 충전 인프라 확인부터 실시간 예약까지, 멈춤 없는 EV 라이프를 경험하세요.</p>
-    <div class="flex flex-wrap gap-2 mb-6">
-      <span class="tech-tag tech-tag-cyan">FastAPI</span>
-      <span class="tech-tag tech-tag-blue">PostgreSQL(PostGIS)</span>
-      <span class="tech-tag tech-tag-dark">MongoDB</span>
-      <span class="tech-tag tech-tag-green">Kafka KRaft</span>
-      <span class="tech-tag tech-tag-orange">Debezium CDC</span>
-      <span class="tech-tag tech-tag-purple">Kubernetes</span>
-      <span class="tech-tag tech-tag-dark">Jenkins</span>
-    </div>
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-xs mt-6">
-      <div class="bg-dark-card rounded-lg p-3 border border-dark-border">
-        <p class="text-dark-muted">작업 기간</p>
-        <p class="text-white font-bold">2026.02.23 — 2026.03.13</p>
-        <p class="text-dark-muted">2주</p>
+  <div class="relative overflow-hidden rounded-2xl border border-gray-100 mb-8 bg-white shadow-sm project-card transition-all duration-300">
+    <div class="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-green-400 via-brand to-cyan-500"></div>
+    <div class="absolute -right-4 top-4 text-[110px] font-extrabold text-gray-50 font-mono leading-none select-none pointer-events-none tracking-tighter">03</div>
+    <div class="p-8 md:p-12">
+      <div class="flex flex-wrap items-center gap-3 mb-5">
+        <span class="text-[10px] font-bold text-green-700 uppercase tracking-[0.18em] font-mono bg-green-50 px-3 py-1.5 rounded-full border border-green-100">// Data Pipeline & DevOps</span>
+        <span class="flex items-center gap-1.5 text-[11px] text-gray-400 font-mono">
+          <span class="material-symbols-outlined text-sm text-gray-400">group</span>
+          팀 프로젝트 · 6인
+        </span>
       </div>
-      <div class="bg-dark-card rounded-lg p-3 border border-dark-border">
-        <p class="text-dark-muted">팀 구성</p>
-        <p class="text-white font-bold">총 6인</p>
-        <p class="text-dark-muted">BE 2 · FE 2 · Infra 2</p>
+      <h3 class="text-3xl md:text-5xl font-extrabold tracking-tight text-gray-900 mb-2 font-kr">Watt-Up</h3>
+      <p class="text-base md:text-lg font-bold mb-1 text-green-600">CQRS 아키텍처와 Kubernetes 기반의 고가용성 전기차(EV) 충전 예약 플랫폼</p>
+      <p class="text-sm text-gray-400 mb-6">전국 충전 인프라 확인부터 실시간 예약까지, 멈춤 없는 EV 라이프를 경험하세요.</p>
+      <div class="flex flex-wrap gap-2 mb-8">
+        <span class="tech-tag tech-tag-cyan">FastAPI</span>
+        <span class="tech-tag tech-tag-blue">PostgreSQL(PostGIS)</span>
+        <span class="tech-tag tech-tag-dark">MongoDB</span>
+        <span class="tech-tag tech-tag-green">Kafka KRaft</span>
+        <span class="tech-tag tech-tag-orange">Debezium CDC</span>
+        <span class="tech-tag tech-tag-purple">Kubernetes</span>
+        <span class="tech-tag tech-tag-dark">Jenkins</span>
       </div>
-      <div class="bg-dark-card rounded-lg p-3 border border-dark-border">
-        <p class="text-dark-muted">본인 담당</p>
-        <p class="text-white font-bold">DB · CDC · Infra</p>
-        <p class="text-dark-muted">CQRS · Kafka · Jenkins</p>
-      </div>
-      <div class="bg-dark-card rounded-lg p-3 border border-dark-border">
-        <p class="text-dark-muted">프로젝트 유형</p>
-        <p class="text-white font-bold">팀 프로젝트</p>
-        <p class="text-dark-muted">온프레미스</p>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3 pt-6 border-t border-gray-100">
+        <div class="bg-gray-50 rounded-xl p-4 border border-gray-100">
+          <p class="text-[10px] text-gray-400 uppercase font-mono mb-1">기간</p>
+          <p class="font-bold text-sm text-gray-900">2026.02 – 03</p>
+          <p class="text-xs text-gray-400">2주 스프린트</p>
+        </div>
+        <div class="bg-gray-50 rounded-xl p-4 border border-gray-100">
+          <p class="text-[10px] text-gray-400 uppercase font-mono mb-1">팀 구성</p>
+          <p class="font-bold text-sm text-gray-900">총 6인</p>
+          <p class="text-xs text-gray-400">BE 2 · FE 2 · Infra 2</p>
+        </div>
+        <div class="bg-brand-50 rounded-xl p-4 border border-brand-lighter">
+          <p class="text-[10px] text-brand uppercase font-mono mb-1">본인 담당</p>
+          <p class="font-bold text-sm text-brand">DB · CDC · Infra</p>
+          <p class="text-xs text-brand/60">CQRS · Kafka · Jenkins</p>
+        </div>
+        <div class="bg-gray-50 rounded-xl p-4 border border-gray-100">
+          <p class="text-[10px] text-gray-400 uppercase font-mono mb-1">유형</p>
+          <p class="font-bold text-sm text-gray-900">팀 프로젝트</p>
+          <p class="text-xs text-gray-400">온프레미스</p>
+        </div>
       </div>
     </div>
   </div>
@@ -2129,13 +2161,12 @@ s.MQTTClient.<span class="text-green-400">Publish</span>(
     </h2>
     <p class="text-gray-500 text-lg mb-10 max-w-xl mx-auto leading-relaxed">
       분산 시스템과 데이터 파이프라인을 설계해온 경험을 바탕으로,<br/>
-      실무에서 즉시 성과를 낼 수 있는 엔지니어가 되겠습니다.<br/>
-      편하게 연락 주세요.
+      실무에서 즉시 성과를 낼 수 있는 엔지니어가 되겠습니다.
     </p>
     <div class="flex flex-wrap justify-center gap-4">
-      <a href="mailto:intothexx@gmail.com" class="bg-brand hover:bg-brand-dark text-white px-8 py-4 rounded-full font-bold text-sm transition-all hover:-translate-y-0.5 shadow-lg shadow-brand/20 flex items-center gap-2">
+      <a href="/cdn-cgi/l/email-protection#533a3d273c273b362b2b13343e323a3f7d303c3e" class="bg-brand hover:bg-brand-dark text-white px-8 py-4 rounded-full font-bold text-sm transition-all hover:-translate-y-0.5 shadow-lg shadow-brand/20 flex items-center gap-2">
         <span class="material-symbols-outlined text-lg">mail</span>
-        intothexx@gmail.com
+        <span class="__cf_email__" data-cfemail="9ff6f1ebf0ebf7fae7e7dff8f2fef6f3b1fcf0f2">[email&#160;protected]</span>
       </a>
       <a href="https://github.com/Wooniq" target="_blank" class="bg-gray-900 hover:bg-gray-800 text-white px-8 py-4 rounded-full font-bold text-sm transition-all hover:-translate-y-0.5 flex items-center gap-2">
         <span class="material-symbols-outlined text-lg">code</span>
@@ -2162,12 +2193,12 @@ s.MQTTClient.<span class="text-green-400">Publish</span>(
     <div class="flex items-center gap-6">
       <a href="https://github.com/Wooniq" target="_blank" class="text-gray-400 hover:text-brand transition-colors text-sm font-semibold">GitHub</a>
       <a href="https://www.linkedin.com/in/jiwoonhan03/" target="_blank" class="text-gray-400 hover:text-brand transition-colors text-sm font-semibold">LinkedIn</a>
-      <a href="mailto:intothexx@gmail.com" class="text-gray-400 hover:text-brand transition-colors text-sm font-semibold">Email</a>
+      <a href="/cdn-cgi/l/email-protection#dab3b4aeb5aeb2bfa2a29abdb7bbb3b6f4b9b5b7" class="text-gray-400 hover:text-brand transition-colors text-sm font-semibold">Email</a>
     </div>
   </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // Smooth scroll for nav links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function (e) {
@@ -2212,18 +2243,4 @@ window.addEventListener('scroll', () => {
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
-      entry.target.style.opacity = '1';
-      entry.target.style.transform = 'translateY(0)';
-    }
-  });
-}, { threshold: 0.1 });
-
-document.querySelectorAll('section > div > .bg-gray-50, section > div > .dark-section, section > .dark-section, .mb-32 > .dark-section, .mb-32 > .bg-gray-50, .mb-20 > .dark-section, .mb-20 > .bg-gray-50').forEach(el => {
-  el.style.opacity = '0';
-  el.style.transform = 'translateY(20px)';
-  el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
-  observer.observe(el);
-});
-</script>
-</body>
-</html>
+      e
