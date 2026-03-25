@@ -346,7 +346,7 @@ tailwind.config = {
               <span class="text-xs font-mono text-gray-400 bg-gray-50 px-3 py-1 rounded-full">2025.12 – 2026.06</span>
             </div>
             <ul class="mt-3 space-y-1.5 text-sm text-gray-600">
-              <li class="flex items-start gap-2"><span class="text-brand mt-0.5">›</span> <span>부회장으로서 팀별 기술 공유 세션, 멘토링, 알고리즘 스터디(7명) 및 취업 스터디를 기획하며 <strong class="text-brand">함께 성장하는 환경</strong>을 주도적으로 설계</span></li>
+              <li class="flex items-start gap-2"><span class="text-brand mt-0.5">›</span> <span>부회장으로서 초반의 각자도생 분위기를 전환 — 팀별 기술 공유 세션, 멘토링(20인), 알고리즘 스터디(7명) 및 취업 스터디를 직접 기획하며 <strong class="text-brand">'함께 성장하는 환경'</strong>을 주도적으로 설계</span></li>
               <li class="flex items-start gap-2"><span class="text-brand mt-0.5">›</span> <span>K3s 클러스터 기반 1,000대 차량 에이전트 OTA 검증 플랫폼 1인 개발 (진행 중)</span></li>
             </ul>
           </div>
@@ -392,7 +392,7 @@ tailwind.config = {
               <span class="text-xs font-mono text-gray-400 bg-gray-50 px-3 py-1 rounded-full">2025.09 – 2025.12</span>
             </div>
             <ul class="mt-3 space-y-1.5 text-sm text-gray-600">
-              <li class="flex items-start gap-2"><span class="text-brand mt-0.5">›</span> <span>학생들이 반복적으로 막히는 오류를 분석해 핵심 개념 · 빈출 오류 트러블슈팅 문서를 작성 · 배포하여 실습 진행 효율 향상</span></li>
+              <li class="flex items-start gap-2"><span class="text-brand mt-0.5">›</span> <span>학생들이 반복적으로 막히는 오류를 분석해 핵심 개념 · 빈출 오류 트러블슈팅 문서화를 통해 실습 효율 향상</span></li>
             </ul>
           </div>
         </div>
@@ -433,9 +433,6 @@ tailwind.config = {
               <h3 class="font-bold text-base">컴퓨터공학부 동계 코딩캠프 튜터</h3>
               <span class="text-xs font-mono text-gray-400 bg-gray-50 px-3 py-1 rounded-full">2025.01</span>
             </div>
-            <ul class="mt-3 space-y-1.5 text-sm text-gray-600">
-              <li class="flex items-start gap-2"><span class="text-brand mt-0.5">›</span> <span>빈출 오류 · 핵심 개념을 문서화하여 배포 — 트러블슈팅 문서화 역량으로 캠프 진행 효율 개선</span></li>
-            </ul>
           </div>
         </div>
       </div>
@@ -1131,19 +1128,19 @@ s.MQTTClient.<span class="text-green-400">Publish</span>(
             <td class="py-3 px-3 font-bold">본인 <span class="text-brand">[본인]</span></td>
             <td class="py-3 px-3"><span class="tech-tag tech-tag-blue text-[10px]">Backend</span></td>
             <td class="py-3 px-3 text-xs text-gray-600">Spring Boot API 서버, GraphRAG 파이프라인, ArangoDB 실시간 그래프 설계, 회의록 자동 생성</td>
-            <td class="py-3 px-3 font-bold text-brand">35%</td>
+            <td class="py-3 px-3 font-bold text-brand">40%</td>
           </tr>
           <tr class="border-b border-gray-100">
             <td class="py-3 px-3">팀원 (백엔드)</td>
             <td class="py-3 px-3"><span class="tech-tag tech-tag-blue text-[10px]">Backend</span></td>
             <td class="py-3 px-3 text-xs text-gray-600">FastAPI LLM 연동, Whisper STT 서버, MySQL 스키마 설계</td>
-            <td class="py-3 px-3 font-bold">25%</td>
+            <td class="py-3 px-3 font-bold">15%</td>
           </tr>
           <tr>
             <td class="py-3 px-3">팀원 2인 (프론트)</td>
             <td class="py-3 px-3"><span class="tech-tag tech-tag-green text-[10px]">Frontend</span></td>
             <td class="py-3 px-3 text-xs text-gray-600">React/Vite UI, tldraw 화이트보드, Electron 앱, 실시간 그래프 시각화</td>
-            <td class="py-3 px-3 font-bold">40%</td>
+            <td class="py-3 px-3 font-bold">50%</td>
           </tr>
         </tbody>
       </table>
@@ -2265,6 +2262,482 @@ const observer = new IntersectionObserver((entries) => {
 document.querySelectorAll('.project-card, .par-card, .code-block').forEach(el => {
   observer.observe(el);
 });
+</script>
+
+<!-- ============ AI CHATBOT WIDGET ============ -->
+<style>
+  /* Chat Widget */
+  .chat-fab {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    z-index: 9999;
+    width: 62px;
+    height: 62px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #3B5BDB, #5C7CFA);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 6px 28px rgba(59,91,219,0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s cubic-bezier(.4,0,.2,1);
+  }
+  .chat-fab:hover {
+    transform: scale(1.08);
+    box-shadow: 0 8px 36px rgba(59,91,219,0.45);
+  }
+  .chat-fab .badge-dot {
+    position: absolute;
+    top: 6px; right: 6px;
+    width: 12px; height: 12px;
+    background: #40C057;
+    border: 2.5px solid #fff;
+    border-radius: 50%;
+  }
+
+  .chat-panel {
+    position: fixed;
+    bottom: 100px;
+    right: 28px;
+    z-index: 9998;
+    width: 400px;
+    max-width: calc(100vw - 32px);
+    height: 560px;
+    max-height: calc(100vh - 140px);
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 24px 80px rgba(0,0,0,0.18), 0 0 0 1px rgba(0,0,0,0.04);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transform: translateY(20px) scale(0.95);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.35s cubic-bezier(.4,0,.2,1);
+  }
+  .chat-panel.open {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .chat-header {
+    background: linear-gradient(135deg, #3B5BDB, #5C7CFA);
+    color: #fff;
+    padding: 18px 20px;
+    flex-shrink: 0;
+  }
+
+  .chat-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    background: #F8F9FA;
+  }
+  .chat-messages::-webkit-scrollbar { width: 4px; }
+  .chat-messages::-webkit-scrollbar-thumb { background: #DEE2E6; border-radius: 2px; }
+
+  .chat-msg {
+    max-width: 88%;
+    padding: 11px 15px;
+    border-radius: 16px;
+    font-size: 0.835rem;
+    line-height: 1.6;
+    word-break: keep-all;
+  }
+  .chat-msg-bot {
+    align-self: flex-start;
+    background: #fff;
+    color: #343A40;
+    border: 1px solid #E9ECEF;
+    border-bottom-left-radius: 4px;
+  }
+  .chat-msg-user {
+    align-self: flex-end;
+    background: #3B5BDB;
+    color: #fff;
+    border-bottom-right-radius: 4px;
+  }
+
+  .chat-input-area {
+    padding: 12px 16px;
+    border-top: 1px solid #E9ECEF;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    background: #fff;
+    flex-shrink: 0;
+  }
+  .chat-input-area input {
+    flex: 1;
+    border: 1.5px solid #DEE2E6;
+    border-radius: 12px;
+    padding: 10px 14px;
+    font-size: 0.85rem;
+    font-family: 'Noto Sans KR', sans-serif;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .chat-input-area input:focus {
+    border-color: #3B5BDB;
+  }
+  .chat-input-area button {
+    width: 40px; height: 40px;
+    border-radius: 12px;
+    background: #3B5BDB;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: background 0.2s;
+  }
+  .chat-input-area button:hover { background: #2B4ACB; }
+  .chat-input-area button:disabled { background: #ADB5BD; cursor: not-allowed; }
+
+  .chat-suggestions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 8px;
+  }
+  .chat-suggest-btn {
+    background: #EDF2FF;
+    color: #3B5BDB;
+    border: 1px solid #DBE4FF;
+    border-radius: 20px;
+    padding: 6px 13px;
+    font-size: 0.75rem;
+    font-family: 'Noto Sans KR', sans-serif;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+  .chat-suggest-btn:hover {
+    background: #3B5BDB;
+    color: #fff;
+    border-color: #3B5BDB;
+  }
+
+  .typing-indicator {
+    display: flex;
+    gap: 4px;
+    padding: 12px 16px;
+    align-self: flex-start;
+    background: #fff;
+    border: 1px solid #E9ECEF;
+    border-radius: 16px;
+    border-bottom-left-radius: 4px;
+  }
+  .typing-dot {
+    width: 7px; height: 7px;
+    background: #ADB5BD;
+    border-radius: 50%;
+    animation: typingBounce 1.4s ease-in-out infinite;
+  }
+  .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+  .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes typingBounce {
+    0%, 60%, 100% { transform: translateY(0); }
+    30% { transform: translateY(-6px); }
+  }
+
+  @media (max-width: 480px) {
+    .chat-panel {
+      right: 0;
+      bottom: 0;
+      width: 100vw;
+      height: 100vh;
+      max-height: 100vh;
+      border-radius: 0;
+    }
+    .chat-fab { bottom: 20px; right: 20px; }
+  }
+</style>
+
+<!-- Floating Chat Button -->
+<button class="chat-fab" id="chatFab" onclick="toggleChat()" aria-label="AI 챗봇 열기">
+  <span class="material-symbols-outlined" style="font-size:28px" id="fabIcon">chat</span>
+  <span class="badge-dot" id="fabBadge"></span>
+</button>
+
+<!-- Chat Panel -->
+<div class="chat-panel" id="chatPanel">
+  <!-- Header -->
+  <div class="chat-header">
+    <div style="display:flex;align-items:center;justify-content:space-between;">
+      <div>
+        <div style="font-weight:800;font-size:1rem;letter-spacing:-0.02em;">한지운 AI 어시스턴트</div>
+        <div style="font-size:0.72rem;opacity:0.8;margin-top:2px;display:flex;align-items:center;gap:5px;">
+          <span style="width:7px;height:7px;background:#40C057;border-radius:50%;display:inline-block;"></span>
+          포트폴리오 기반 질의응답
+        </div>
+      </div>
+      <button onclick="toggleChat()" style="background:rgba(255,255,255,0.15);border:none;color:#fff;width:32px;height:32px;border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:center;">
+        <span class="material-symbols-outlined" style="font-size:20px;">close</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Messages -->
+  <div class="chat-messages" id="chatMessages">
+    <div class="chat-msg chat-msg-bot">
+      안녕하세요! 👋<br/>
+      <strong>한지운</strong>의 포트폴리오에 대해 무엇이든 물어보세요.<br/>
+      기술 역량, 프로젝트 경험, 직무 적합성 등을 상세히 안내드리겠습니다.
+      <div class="chat-suggestions" style="margin-top:10px;">
+        <button class="chat-suggest-btn" onclick="sendSuggestion(this)">이 지원자의 핵심 강점은?</button>
+        <button class="chat-suggest-btn" onclick="sendSuggestion(this)">백엔드 역량은 어떤가요?</button>
+        <button class="chat-suggest-btn" onclick="sendSuggestion(this)">인프라/DevOps 경험은?</button>
+        <button class="chat-suggest-btn" onclick="sendSuggestion(this)">협업 및 리더십 경험은?</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Input -->
+  <div class="chat-input-area">
+    <input type="text" id="chatInput" placeholder="질문을 입력하세요..." autocomplete="off"
+      onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendMessage();}"/>
+    <button id="chatSendBtn" onclick="sendMessage()">
+      <span class="material-symbols-outlined" style="font-size:20px;">send</span>
+    </button>
+  </div>
+</div>
+
+<script>
+// ============ CHATBOT LOGIC ============
+const PORTFOLIO_CONTEXT = `
+당신은 백엔드/인프라 엔지니어 지원자 "한지운"의 포트폴리오 기반 AI 어시스턴트입니다.
+채용담당자의 질문에 한지운의 실제 경험과 역량을 근거로 논리적이고 구체적으로 답변합니다.
+아래는 한지운의 포트폴리오 전체 데이터입니다.
+
+═══ 인적사항 ═══
+- 이름: 한지운 (HAN JIWOON)
+- 생년월일: 2003.07.05
+- 이메일: intothexx@gmail.com
+- GitHub: github.com/Wooniq
+- LinkedIn: linkedin.com/in/jiwoonhan03
+- 연락처: (+82)10-8225-7963
+
+═══ 학력 ═══
+- 한성대학교 컴퓨터공학부 학사 (2022.03 – 2026.08)
+- GPA: 3.76 / 4.5
+
+═══ 자격증 ═══
+- 정보처리기사 (2025.09)
+- TOEIC Speaking IM3 (2026.03)
+
+═══ 학술 활동 ═══
+- 논문: "GraphRAG를 활용한 EPUB 기반 추론형 리더기" — 공동저자 (2024.12)
+
+═══ 경험 ═══
+1. 현대오토에버 모빌리티 SW스쿨 (클라우드) (2025.12 – 2026.06)
+   - 부회장으로서 팀별 기술 공유 세션, 멘토링(20인), 알고리즘 스터디(7명), 취업 스터디를 직접 기획
+   - 각자도생 분위기를 '함께 성장하는 환경'으로 전환한 리더십
+
+2. 교내 스쿨버스 앱 서버 유지보수 (2024.06 – 2024.12)
+   - 9,000+ 실사용자 대상 앱 서버
+   - 서버 리소스 77% 개선 달성
+
+3. 학부연구생 (2024.03 – 2025.02)
+
+4. 컴퓨터공학부 교과 교육 조교 (2025.09 – 2025.12)
+   - 학생 빈출 오류 분석 → 노션 트러블슈팅 문서 작성·배포
+
+5. IT연합동아리 멋쟁이사자처럼 백엔드 (2024.03 – 2024.12)
+
+6. 학습능력향상튜터링 튜터 (2023.02 – 2025.12)
+
+7. 컴퓨터공학부 동계 코딩캠프 튜터 (2025.01)
+   - 핵심 개념·빈출 오류를 노션 문서화하여 배포
+
+═══ 프로젝트 01: OTA Dependency Validator ═══
+- 기간: 2026.02 – 진행 중 | 1인 개발
+- 소속: 현대오토에버 모빌리티 SW스쿨
+- 한 줄 요약: 커넥티드 카 1,000대 무선 업데이트 안정성 확보를 위한 시스템 진단 및 검증 플랫폼
+- 기술: K3s, Kafka 3-Node, Redis, SAP HANA, Go, Python/FastAPI, MQTT, Autosar DLT, ISO 24089/3379/21434
+- 핵심 성과:
+  · 바이너리 패킹(Autosar DLT)으로 텍스트 대비 페이로드 30% 절감
+  · Redis 기반 0.0016초 실시간 판별 레이턴시
+  · 1,000 에이전트 동시 부하 Zero Data Loss 달성
+  · 99.9% 시스템 가동률
+- 상세 역할:
+  · K3s 마스터-워커 4-VM 클러스터 아키텍처 설계
+  · 1,000개 차량 Pod 배포, Go 고루틴 Lock-Free Atomic 동시성 제어
+  · Kafka 3-Node → Redis → SAP HANA 3단 실시간 파이프라인 구현
+  · ISO 24089 기반 에러 감지 및 자동 롤백, SHA-256 펌웨어 무결성 검증
+  · Autosar DLT 바이너리 포맷 파서 구현
+
+═══ 프로젝트 02: Dol-AI ═══
+- 기간: 2025.03 – 06 | 4인 팀 (본인 기여 40%, 백엔드 전담) | 캡스톤 디자인
+- 한 줄 요약: 실시간 AI 스마트 회의 어시스턴스 (Whisper · GraphRAG · WebRTC)
+- 기술: Spring Boot, FastAPI, Mediasoup, ArangoDB, OpenAI Whisper, Azure Translator, Gemini, MySQL, Redis, Docker, AWS
+- 핵심 성과:
+  · 한·중·영 3개 국어 실시간 자막
+  · 회의록 100% 자동화 (DOCX·PNG)
+  · 회의별 독립 GraphRAG 지식 그래프
+- 상세 역할:
+  · Spring Boot API 서버 설계 (회의 세션, Redis 세션 관리)
+  · ArangoDB 실시간 노드·엣지 동적 GraphRAG 파이프라인
+  · CompletableFuture 기반 STT → 번역 → 그래프 비동기 파이프라인
+  · 다국어 회의록 자동 생성 및 S3 저장
+  · Docker Compose 오케스트레이션, AWS EC2+S3 배포
+
+═══ 프로젝트 03: Watt-Up ═══
+- 기간: 2026.02 – 03 | 6인 팀 (본인 기여 40%, DB·CDC·Infra 담당) | 2주 스프린트
+- 한 줄 요약: CQRS 아키텍처와 Kubernetes 기반 고가용성 전기차(EV) 충전 예약 플랫폼
+- 기술: FastAPI, PostgreSQL(PostGIS), MongoDB, Kafka KRaft, Debezium CDC, Kubernetes, Jenkins
+- 핵심 성과:
+  · CQRS 읽기·쓰기 분리 최적화
+  · Debezium CDC 실시간 동기화 파이프라인
+  · K8s 4-Node 온프레미스 무중단 인프라
+- 상세 역할:
+  · CQRS 패턴 설계 (PostgreSQL 쓰기 / MongoDB 읽기)
+  · Debezium Custom 이미지 빌드, Kafka KRaft 3-Node 클러스터
+  · VirtualBox 5-VM 온프레미스 K8s 클러스터 구축
+  · Jenkins DooD CI/CD, ArgoCD GitOps
+- 트러블슈팅 경험:
+  · Kafka KRaft 마이그레이션 (ZooKeeper 제거)
+  · OOM Killer 문제 해결 (Docker 메모리 리미트, JVM 힙 제어)
+  · Debezium Custom 이미지 빌드 (MongoDB 커넥터 라이브러리 누락 해결)
+  · Jenkins DooD — 호스트 리소스 독식 방지
+
+═══ 핵심 기술 스택 요약 ═══
+- Languages: Go, Java(Spring Boot), Python(FastAPI), SQLScript
+- Database: SAP HANA, PostgreSQL(PostGIS), MongoDB, MySQL, ArangoDB, Redis
+- Messaging: Kafka, MQTT
+- DevOps: Docker, Kubernetes(K3s/K8s), ArgoCD, Jenkins, Grafana
+- AI/ML: OpenAI Whisper, Gemini, GraphRAG
+- Cloud: AWS EC2, S3
+- 표준/보안: ISO 24089, ISO 21434, ISO 3779, Autosar DLT, SHA-256
+
+═══ 성격 & 가치관 ═══
+- "단단한 시스템 엔진과 변화에 유연한 서스펜션을 갖춘 엔지니어"
+- "누군가 해주길 기다리지 않고 내가 먼저 구조를 만들어, 함께 성장하는 환경을 설계"
+- 능동적 리더십: 스터디·멘토링·기술 공유를 직접 기획
+- 문서화 역량: 빈출 오류 트러블슈팅을 체계적으로 문서화·배포
+- 협업 프로젝트 9건, 수상 5회
+
+═══ 응답 규칙 ═══
+- 반드시 위 포트폴리오 데이터에 근거하여 답변할 것
+- 채용담당자 입장에서 유용한 정보 위주로 간결하고 논리적으로 답변
+- 직무 적합성 질문 시, 구체적 프로젝트·성과·기술을 근거로 설명
+- 포트폴리오에 없는 정보는 "포트폴리오에 명시되지 않은 부분"이라고 솔직히 안내
+- 한국어로 답변 (영어 질문 시 영어 가능)
+- 답변은 300자 내외로 핵심만 전달 (필요시 더 상세히)
+`;
+
+let chatOpen = false;
+const chatMessages = document.getElementById('chatMessages');
+const chatInput = document.getElementById('chatInput');
+const chatSendBtn = document.getElementById('chatSendBtn');
+const chatPanel = document.getElementById('chatPanel');
+const fabIcon = document.getElementById('fabIcon');
+const fabBadge = document.getElementById('fabBadge');
+let conversationHistory = [];
+
+// Cloudflare Worker 프록시 URL (API 키는 Worker 환경변수에 안전하게 보관)
+const WORKER_URL = 'https://portfolio-gemini-proxy.jiwoonhan.workers.dev';
+
+function toggleChat() {
+  chatOpen = !chatOpen;
+  chatPanel.classList.toggle('open', chatOpen);
+  fabIcon.textContent = chatOpen ? 'close' : 'chat';
+  fabBadge.style.display = chatOpen ? 'none' : 'block';
+  if (chatOpen) {
+    setTimeout(() => chatInput.focus(), 400);
+  }
+}
+
+function addMessage(text, isUser) {
+  const div = document.createElement('div');
+  div.className = 'chat-msg ' + (isUser ? 'chat-msg-user' : 'chat-msg-bot');
+  let html = text
+    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+    .replace(/\n/g, '<br/>');
+  div.innerHTML = html;
+  chatMessages.appendChild(div);
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+function showTyping() {
+  const div = document.createElement('div');
+  div.className = 'typing-indicator';
+  div.id = 'typingIndicator';
+  div.innerHTML = '<div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>';
+  chatMessages.appendChild(div);
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+function hideTyping() {
+  const el = document.getElementById('typingIndicator');
+  if (el) el.remove();
+}
+
+function sendSuggestion(btn) {
+  chatInput.value = btn.textContent;
+  sendMessage();
+}
+
+async function sendMessage() {
+  const text = chatInput.value.trim();
+  if (!text) return;
+
+  chatInput.value = '';
+  chatSendBtn.disabled = true;
+  addMessage(text, true);
+  showTyping();
+
+  conversationHistory.push({ role: 'user', parts: [{ text: text }] });
+
+  try {
+    const response = await fetch(WORKER_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        system_instruction: {
+          parts: [{ text: PORTFOLIO_CONTEXT }]
+        },
+        contents: conversationHistory.slice(-10),
+        generationConfig: {
+          temperature: 0.7,
+          maxOutputTokens: 1024
+        }
+      })
+    });
+
+    const data = await response.json();
+    hideTyping();
+
+    if (data.candidates && data.candidates[0]?.content?.parts?.[0]?.text) {
+      const reply = data.candidates[0].content.parts[0].text;
+      conversationHistory.push({ role: 'model', parts: [{ text: reply }] });
+      addMessage(reply, false);
+    } else if (data.error) {
+      addMessage('⚠️ 일시적 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.', false);
+      conversationHistory.pop();
+    } else {
+      addMessage('⚠️ 응답을 받지 못했습니다. 다시 시도해 주세요.', false);
+      conversationHistory.pop();
+    }
+  } catch (err) {
+    hideTyping();
+    addMessage('⚠️ 네트워크 오류가 발생했습니다. 다시 시도해 주세요.', false);
+    conversationHistory.pop();
+    console.error('Gemini API error:', err);
+  }
+
+  chatSendBtn.disabled = false;
+  chatInput.focus();
+}
 </script>
 </body>
 </html>
