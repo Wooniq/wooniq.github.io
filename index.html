@@ -2698,41 +2698,64 @@ async function sendMessage() {
 
   conversationHistory.push({ role: 'user', parts: [{ text: text }] });
 
-  try {
-    const response = await fetch(WORKER_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        system_instruction: {
-          parts: [{ text: PORTFOLIO_CONTEXT }]
-        },
-        contents: conversationHistory.slice(-10),
-        generationConfig: {
-          temperature: 0.7,
-          maxOutputTokens: 1024
+  let attempts = 0;
+  const maxAttempts = 2;
+
+  while (attempts < maxAttempts) {
+    attempts++;
+    try {
+      const response = await fetch(WORKER_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          system_instruction: {
+            parts: [{ text: PORTFOLIO_CONTEXT }]
+          },
+          contents: conversationHistory.slice(-10),
+          generationConfig: {
+            temperature: 0.7,
+            maxOutputTokens: 1024
+          }
+        })
+      });
+
+      if (response.status === 429) {
+        if (attempts < maxAttempts) {
+          await new Promise(r => setTimeout(r, 4000));
+          continue;
         }
-      })
-    });
+        hideTyping();
+        addMessage('⏳ 잠시 요청이 많습니다. 10초 후 다시 질문해 주세요!', false);
+        conversationHistory.pop();
+        break;
+      }
 
-    const data = await response.json();
-    hideTyping();
+      const data = await response.json();
+      hideTyping();
 
-    if (data.candidates && data.candidates[0]?.content?.parts?.[0]?.text) {
-      const reply = data.candidates[0].content.parts[0].text;
-      conversationHistory.push({ role: 'model', parts: [{ text: reply }] });
-      addMessage(reply, false);
-    } else if (data.error) {
-      addMessage('⚠️ 일시적 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.', false);
-      conversationHistory.pop();
-    } else {
-      addMessage('⚠️ 응답을 받지 못했습니다. 다시 시도해 주세요.', false);
-      conversationHistory.pop();
+      if (data.candidates && data.candidates[0]?.content?.parts?.[0]?.text) {
+        const reply = data.candidates[0].content.parts[0].text;
+        conversationHistory.push({ role: 'model', parts: [{ text: reply }] });
+        addMessage(reply, false);
+      } else if (data.error) {
+        addMessage('⚠️ 일시적 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.', false);
+        conversationHistory.pop();
+      } else {
+        addMessage('⚠️ 응답을 받지 못했습니다. 다시 시도해 주세요.', false);
+        conversationHistory.pop();
+      }
+      break;
+
+    } catch (err) {
+      if (attempts >= maxAttempts) {
+        hideTyping();
+        addMessage('⚠️ 네트워크 오류가 발생했습니다. 다시 시도해 주세요.', false);
+        conversationHistory.pop();
+        console.error('Gemini API error:', err);
+      } else {
+        await new Promise(r => setTimeout(r, 2000));
+      }
     }
-  } catch (err) {
-    hideTyping();
-    addMessage('⚠️ 네트워크 오류가 발생했습니다. 다시 시도해 주세요.', false);
-    conversationHistory.pop();
-    console.error('Gemini API error:', err);
   }
 
   chatSendBtn.disabled = false;
